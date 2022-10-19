@@ -26,6 +26,39 @@ class AnswerScreenHome extends StatefulWidget {
 }
 
 class _AnswerScreenHomeState extends State<AnswerScreenHome> {
+  List<String> lstItem = [
+    "50/50",
+    "SKIP",
+    "NHÂN ĐÔI",
+    "GỢI Ý",
+    "+30s",
+  ];
+  Widget _iconButton(String strName) {
+    return TextButton(
+      onPressed: () {},
+      child: Container(
+        alignment: Alignment.center,
+        width: 60,
+        height: 40,
+        child: Text(
+          strName,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        decoration: BoxDecoration(
+          color: Color.fromARGB(255, 255, 249, 228),
+          border: Border.all(width: 2),
+          borderRadius: BorderRadius.all(
+            Radius.circular(5),
+          ),
+        ),
+      ),
+    );
+  }
+
   late int questionid;
   late String txtTitle;
   var list = <quizz>{};
@@ -37,9 +70,30 @@ class _AnswerScreenHomeState extends State<AnswerScreenHome> {
     if (questionid == 1) {
       txtTitle = "Đố vui";
       if (questionid == 1) {
-        list.add(quizz(1, 1, "1+1=?", "1", "2", "3", "4", "2", 10, 2));
-        list.add(quizz(2, 1, "Hưng đánh con gì ghê nhất trong LQ mobile",
-            "Murad", "Amily", "Yena", "Tel a nắc", "Yena", 90, 4));
+        list.add(quizz(
+          1,
+          1,
+          "1+1=?",
+          "1",
+          "2",
+          "3",
+          "4",
+          "2",
+          10,
+          2,
+        ));
+        list.add(quizz(
+          2,
+          1,
+          "Hưng đánh con gì ghê nhất trong LQ mobile",
+          "Murad",
+          "Amily",
+          "Yena",
+          "Tel a nắc",
+          "Yena",
+          90,
+          4,
+        ));
       }
     }
   }
@@ -68,7 +122,7 @@ class _AnswerScreenHomeState extends State<AnswerScreenHome> {
                                   MaterialPageRoute(
                                       builder: ((context) =>
                                           ChooseCategories()))),
-                              child: Text('OK'),
+                              child: Text('Yes'),
                             ),
                             TextButton(
                               onPressed: () => Navigator.pop(context),
@@ -80,15 +134,14 @@ class _AnswerScreenHomeState extends State<AnswerScreenHome> {
                         ));
               },
               child: Icon(
-                Icons.exit_to_app_outlined,
+                Icons.cancel,
                 color: Colors.white,
               ),
             )
           ],
         ),
         body: Center(
-          child: Center(
-              child: Column(
+          child: Column(
             children: [
               Container(
                 padding: const EdgeInsets.only(top: 20),
@@ -300,8 +353,37 @@ class _AnswerScreenHomeState extends State<AnswerScreenHome> {
                   ),
                 ),
               ),
+              Container(
+                padding: const EdgeInsets.only(top: 20),
+                child: Column(
+                  children: [
+                    Container(
+                      alignment: Alignment.topCenter,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          _iconButton('50/50'),
+                          _iconButton('SKIP'),
+                          _iconButton('NHÂN ĐÔI'),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(top: 20),
+                      alignment: Alignment.center,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          _iconButton('GỢI Ý'),
+                          _iconButton('+30s'),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
-          )),
+          ),
         ),
       ),
     );

@@ -25,7 +25,10 @@ class ChooseCategoriesState extends State<ChooseCategories_Home> {
       title: 'Chọn lĩnh vực',
       home: Scaffold(
         appBar: AppBar(
-          title: Text("CATEGORIES"),
+          title: Text(
+            "CATEGORIES",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
         drawer: SideMenu(),
         body: Center(
