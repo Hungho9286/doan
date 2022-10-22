@@ -139,72 +139,58 @@ class _FriendDetailHomeState extends State<FriendDetailHome>
       length: 2,
       initialIndex: 1,
       child: Scaffold(
-        body: CustomScrollView(
-          physics: const BouncingScrollPhysics(
-              parent: AlwaysScrollableScrollPhysics()),
-          slivers: <Widget>[
-            SliverAppBar(
-              stretch: true,
-              onStretchTrigger: () {
-                // Function callback for stretch
-                return Future<void>.value();
-              },
-              expandedHeight: 200.0,
-              flexibleSpace: FlexibleSpaceBar(
-                stretchModes: const <StretchMode>[
-                  StretchMode.zoomBackground,
-                  StretchMode.blurBackground,
-                  StretchMode.fadeTitle,
-                ],
-                background: Stack(
-                  fit: StackFit.expand,
+        appBar: AppBar(
+          title: Text('Friends'),
+        ),
+        body: Column(
+          children: [
+            UserAccountsDrawerHeader(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('images/profilebg.jpg'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              currentAccountPicture: CircleAvatar(
+                child: CircleAvatar(
+                    radius: 30,
+                    backgroundImage: AssetImage(
+                      'images/frog.jpeg',
+                    )),
+              ),
+              accountName: Text('Frog'),
+              accountEmail: null,
+            ),
+            TabBar(
+              indicatorColor: Color(4282542002),
+              unselectedLabelColor: Colors.grey,
+              controller: _controller,
+              tabs: [
+                Tab(
+                  child: Utils.IconWithColor(
+                    Icons.home_outlined,
+                    _controller.index == 0 ? Color(4282542002) : Colors.grey,
+                  ),
+                ),
+                Tab(
+                  child: Utils.IconWithColor(
+                    Icons.home_outlined,
+                    _controller.index == 1 ? Color(4282542002) : Colors.grey,
+                  ),
+                ),
+              ],
+            ),
+            Expanded(
+              flex: 2,
+              child: Container(
+                child: TabBarView(
+                  controller: _controller,
                   children: [
-                    Image.asset(
-                      'images/profilebg.jpg',
-                      fit: BoxFit.cover,
-                    ),
-                    _avtSection,
-                    const DecoratedBox(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment(0.0, 0.5),
-                          end: Alignment.center,
-                          colors: <Color>[
-                            Color(0x60000000),
-                            Color(0x00000000),
-                          ],
-                        ),
-                      ),
-                    ),
+                    Text('data 1'),
+                    Text('data 2'),
                   ],
                 ),
               ),
-              bottom: TabBar(
-                indicatorColor: Color(4282542002),
-                unselectedLabelColor: Colors.grey,
-                controller: _controller,
-                tabs: [
-                  Tab(
-                    child: Utils.IconWithColor(
-                      Icons.home_outlined,
-                      _controller.index == 0 ? Color(4282542002) : Colors.grey,
-                    ),
-                  ),
-                  Tab(
-                    child: Utils.IconWithColor(
-                      Icons.tv,
-                      _controller.index == 1 ? Color(4282542002) : Colors.grey,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            TabBarView(
-              controller: _controller,
-              children: [
-                Text('data1'),
-                Text('data 2'),
-              ],
             ),
           ],
         ),
