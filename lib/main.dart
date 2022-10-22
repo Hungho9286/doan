@@ -2,7 +2,10 @@ import 'package:doan/answer_question.dart';
 import 'package:flutter/material.dart';
 import 'package:doan/choose_categories.dart';
 
-void main() => runApp(App());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(App());
+}
 
 class App extends StatelessWidget {
   const App({super.key});
