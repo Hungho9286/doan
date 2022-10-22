@@ -33,6 +33,52 @@ class _AnswerScreenHomeState extends State<AnswerScreenHome> {
     "GỢI Ý",
     "+30s",
   ];
+  Widget _buttonAnswer(String strAnswer, Color colorTop, ColorBot) {
+    return Container(
+      margin: const EdgeInsets.only(top: 10),
+      child: TextButton(
+        onPressed: () {},
+        child: Container(
+          width: 350,
+          height: 70,
+          child: Stack(
+            children: [
+              Positioned(
+                top: 10,
+                left: 10,
+                child: Container(
+                  width: 340,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    color: ColorBot,
+                  ),
+                ),
+              ),
+              Container(
+                alignment: Alignment.centerLeft,
+                padding: const EdgeInsets.only(left: 15),
+                width: 340,
+                height: 60,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: colorTop,
+                ),
+                child: Text(
+                  strAnswer,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 19),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget _iconButton(String strName) {
     return TextButton(
       onPressed: () {},
@@ -118,10 +164,11 @@ class _AnswerScreenHomeState extends State<AnswerScreenHome> {
                           actions: [
                             TextButton(
                               onPressed: () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: ((context) =>
-                                          ChooseCategories()))),
+                                context,
+                                MaterialPageRoute(
+                                  builder: ((context) => ChooseCategories()),
+                                ),
+                              ),
                               child: Text('Yes'),
                             ),
                             TextButton(
@@ -145,7 +192,7 @@ class _AnswerScreenHomeState extends State<AnswerScreenHome> {
             children: [
               Container(
                 padding: const EdgeInsets.only(top: 20),
-                width: 400,
+                width: 350,
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -165,7 +212,7 @@ class _AnswerScreenHomeState extends State<AnswerScreenHome> {
                     ]),
               ),
               Container(
-                width: 400,
+                width: 350,
                 height: 2,
                 color: Colors.black,
               ),
@@ -181,180 +228,27 @@ class _AnswerScreenHomeState extends State<AnswerScreenHome> {
                   ),
                 ),
               ),
-              Container(
-                margin: const EdgeInsets.only(top: 20),
-                child: TextButton(
-                  onPressed: () {},
-                  child: Container(
-                    width: 410,
-                    height: 70,
-                    child: Stack(
-                      children: [
-                        Positioned(
-                          top: 10,
-                          left: 10,
-                          child: Container(
-                            width: 400,
-                            height: 60,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: Color.fromARGB(255, 117, 130, 48),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          padding: const EdgeInsets.only(left: 15),
-                          width: 400,
-                          height: 60,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            color: Color.fromARGB(255, 179, 198, 72),
-                          ),
-                          child: Text(
-                            list.elementAt(index).answerA.toString(),
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 19),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+              _buttonAnswer(
+                  list.elementAt(index).answerA.toString(),
+                  Color.fromARGB(255, 134, 168, 69),
+                  Color.fromARGB(255, 110, 140, 54)),
+              _buttonAnswer(
+                list.elementAt(index).answerB,
+                Color.fromARGB(255, 162, 216, 159),
+                Color.fromARGB(255, 136, 183, 134),
+              ),
+              _buttonAnswer(
+                list.elementAt(index).answerC,
+                Color.fromARGB(255, 244, 191, 61),
+                Color.fromARGB(255, 216, 180, 94),
+              ),
+              _buttonAnswer(
+                list.elementAt(index).answerD.toString(),
+                Color.fromARGB(255, 255, 107, 108),
+                Color.fromARGB(255, 206, 86, 87),
               ),
               Container(
-                margin: const EdgeInsets.only(top: 20),
-                child: TextButton(
-                  onPressed: () {},
-                  child: Container(
-                    width: 410,
-                    height: 70,
-                    child: Stack(
-                      children: [
-                        Positioned(
-                          top: 10,
-                          left: 10,
-                          child: Container(
-                            width: 400,
-                            height: 60,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: Color.fromARGB(255, 135, 176, 132),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          padding: const EdgeInsets.only(left: 15),
-                          width: 400,
-                          height: 60,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            color: Color.fromARGB(255, 162, 216, 159),
-                          ),
-                          child: Text(
-                            list.elementAt(index).answerB.toString(),
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 19),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(top: 20),
-                child: TextButton(
-                  onPressed: () {},
-                  child: Container(
-                    width: 410,
-                    height: 70,
-                    child: Stack(
-                      children: [
-                        Positioned(
-                          top: 10,
-                          left: 10,
-                          child: Container(
-                            width: 400,
-                            height: 60,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: Color.fromARGB(255, 216, 180, 94),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          padding: const EdgeInsets.only(left: 15),
-                          width: 400,
-                          height: 60,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            color: Color.fromARGB(255, 244, 191, 61),
-                          ),
-                          child: Text(
-                            list.elementAt(index).answerC.toString(),
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 19),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(top: 20),
-                child: TextButton(
-                  onPressed: () {},
-                  child: Container(
-                    width: 410,
-                    height: 70,
-                    child: Stack(
-                      children: [
-                        Positioned(
-                          top: 10,
-                          left: 10,
-                          child: Container(
-                            width: 400,
-                            height: 60,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: Color.fromARGB(255, 206, 86, 87),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          padding: const EdgeInsets.only(left: 15),
-                          width: 400,
-                          height: 60,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            color: Color.fromARGB(255, 255, 107, 108),
-                          ),
-                          child: Text(
-                            list.elementAt(index).answerD.toString(),
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 19),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.only(top: 20),
+                padding: const EdgeInsets.only(top: 5),
                 child: Column(
                   children: [
                     Container(
@@ -369,7 +263,7 @@ class _AnswerScreenHomeState extends State<AnswerScreenHome> {
                       ),
                     ),
                     Container(
-                      margin: const EdgeInsets.only(top: 20),
+                      margin: const EdgeInsets.only(top: 5),
                       alignment: Alignment.center,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

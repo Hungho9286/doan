@@ -1,3 +1,5 @@
+import 'package:doan/inventories_user.dart';
+import 'package:doan/profile_user.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -9,6 +11,14 @@ class SideMenu extends StatelessWidget {
     "Xếp hạng",
     "Shop"
   ];
+  void _handleButton(int index, BuildContext context) {
+    if (index == 0) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => Profile()));
+    }
+    Inventories();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -27,6 +37,7 @@ class SideMenu extends StatelessWidget {
                     ),
                   ),
                   accountName: Container(
+                    padding: const EdgeInsets.only(left: 10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -42,18 +53,17 @@ class SideMenu extends StatelessWidget {
                       ],
                     ),
                   ),
-                  accountEmail: null,
-                ),
-                Positioned(
-                  top: 20,
-                  left: 10,
-                  child: Container(
-                    width: 70,
-                    height: 70,
+                  currentAccountPictureSize: Size.square(90),
+                  currentAccountPicture: CircleAvatar(
+                    backgroundColor: Colors.white,
                     child: CircleAvatar(
-                      backgroundImage: AssetImage('images/avatar.jpg'),
+                      radius: 40,
+                      backgroundImage: AssetImage(
+                        'images/avatar.jpg',
+                      ),
                     ),
                   ),
+                  accountEmail: null,
                 ),
                 Positioned(
                   right: 5,
@@ -79,7 +89,7 @@ class SideMenu extends StatelessWidget {
                 itemCount: lstItem.length,
                 itemBuilder: (BuildContext context, int index) {
                   return TextButton(
-                    onPressed: () {},
+                    onPressed: () => _handleButton(index, context),
                     child: Container(
                       padding: const EdgeInsets.only(top: 10, left: 10),
                       alignment: Alignment.centerLeft,
