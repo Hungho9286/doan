@@ -43,7 +43,7 @@ class SideMenu extends StatelessWidget {
                       children: [
                         Container(
                           child: Text(
-                            "Frog",
+                            "Yuna Ogura",
                             textAlign: TextAlign.left,
                             style: TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold),
