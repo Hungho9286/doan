@@ -1,5 +1,6 @@
 import 'package:doan/answer_question.dart';
 import 'package:doan/friend_details.dart';
+import 'package:doan/listfriend_chat.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:doan/side_menu.dart';
@@ -383,7 +384,14 @@ class ChooseCategoriesState extends State<ChooseCategories_Home> {
                     height: 40,
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Contact(),
+                        ),
+                      );
+                    },
                     child: Icon(
                       Iconsax.message5,
                       color: Colors.white,
