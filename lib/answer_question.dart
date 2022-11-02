@@ -1,5 +1,6 @@
 import 'package:doan/categories.dart';
 import 'package:doan/choose_categories.dart';
+import 'package:doan/result_answer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -37,7 +38,12 @@ class _AnswerScreenHomeState extends State<AnswerScreenHome> {
     return Container(
       margin: const EdgeInsets.only(top: 10),
       child: TextButton(
-        onPressed: () {},
+        onPressed: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => AnswerResult(),
+          ),
+        ),
         child: Container(
           width: 350,
           height: 70,

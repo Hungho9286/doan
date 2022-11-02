@@ -39,6 +39,7 @@ class _TabProfileState extends State<TabProfile>
     return Container(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width - 30,
+      padding: const EdgeInsets.only(left: 45, right: 45),
       child: ListView(
         children: [
           Column(
