@@ -5,14 +5,23 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class AnswerResult extends StatefulWidget {
-  const AnswerResult({super.key});
-
+  double point;
+  int trueCorrect;
+  String time;
+  AnswerResult(
+      {required this.point, required this.trueCorrect, required this.time});
   @override
-  State<AnswerResult> createState() => _AnswerResultState();
+  State<AnswerResult> createState() =>
+      _AnswerResultState(point: point, trueCorrect: trueCorrect, time: time);
 }
 
 class _AnswerResultState extends State<AnswerResult>
     with TickerProviderStateMixin {
+  double point;
+  int trueCorrect;
+  String time;
+  _AnswerResultState(
+      {required this.point, required this.trueCorrect, required this.time});
   late AnimationController _animationController;
   late Animation<double> animation;
   @override
@@ -199,13 +208,22 @@ class _AnswerResultState extends State<AnswerResult>
                             fontSize: 45,
                           ),
                         ),
+                        Column(
+                          children: [
+                            Text("Hoàn thành: $trueCorrect/10"),
+                            Text("Điểm: $point"),
+                            Text("Thời gian hoàn thành: $time"),
+                          ],
+                        ),
                         ElevatedButton(
-                          onPressed: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ChooseCategories(),
-                            ),
-                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ChooseCategories(),
+                                ));
+                          },
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all(
                               Color.fromARGB(255, 134, 241, 211),
