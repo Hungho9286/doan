@@ -1,4 +1,9 @@
 import 'package:doan/answer_question.dart';
+import 'package:doan/Begin.dart';
+import 'package:doan/Login.dart';
+import 'package:doan/Shop.dart';
+import 'package:doan/turn.dart';
+import 'Item_support.dart';
 import 'package:flutter/material.dart';
 import 'package:doan/choose_categories.dart';
 
@@ -27,7 +32,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ChooseCategories(),
+      body:Login(),
     );
   }
 }
