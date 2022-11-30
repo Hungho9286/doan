@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:doan/answer_question.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:doan/side_menu.dart';
+import 'choose_categories.dart';
 class Item_support extends StatelessWidget {
   const Item_support({super.key});
 
@@ -272,7 +273,10 @@ class _Item_supportHomeState extends State<Item_supportHome> {
             borderRadius: BorderRadius.all(Radius.circular(100)),
           ),
           child: FloatingActionButton(
-            onPressed: () {},
+            onPressed: () {
+               Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => ChooseCategories()));
+            },
             backgroundColor: Color.fromARGB(255, 250, 196, 32),
             child: Container(
               child: Icon(

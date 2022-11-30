@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'choose_categories.dart';
 class Begin extends StatelessWidget {
   const Begin({super.key});
 
@@ -51,7 +51,10 @@ class _BeginHomeState extends State<BeginHome> {
                     
                     Container(
                       padding: EdgeInsets.only(top:130 , bottom: 0),
-                      child: TextButton(onPressed: () {}, child: Column(  
+                      child: TextButton(onPressed: () {
+                         Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => ChooseCategories()));
+                      }, child: Column(  
                         children: [
                           Container(
                             width: 200,  
