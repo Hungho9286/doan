@@ -22,11 +22,11 @@ class ChooseCategories_Home extends StatefulWidget {
 class ChooseCategoriesState extends State<ChooseCategories_Home> {
   @override
   Widget _createButtonCategories(
-      String strImage, String strCategories, Color color) {
+      String strImage, String strCategories, Color color, int fieldid) {
     return TextButton(
       onPressed: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => AnswerScreen(1)));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => AnswerScreen(fieldid)));
       },
       child: Container(
         width: 160,
@@ -96,11 +96,13 @@ class ChooseCategoriesState extends State<ChooseCategories_Home> {
                   'images/technology.png',
                   'Công nghệ',
                   Color.fromARGB(255, 134, 168, 69),
+                  1,
                 ),
                 _createButtonCategories(
                   'images/math.png',
                   'Toán học',
                   Color.fromARGB(255, 162, 216, 159),
+                  2,
                 ),
               ],
             ),
@@ -111,11 +113,13 @@ class ChooseCategoriesState extends State<ChooseCategories_Home> {
                   'images/Literature.png',
                   'Văn học',
                   Color.fromARGB(255, 204, 240, 197),
+                  3,
                 ),
                 _createButtonCategories(
                   'images/history.png',
                   'Lịch sử',
                   Color.fromARGB(255, 254, 212, 110),
+                  4,
                 ),
               ],
             ),
@@ -126,11 +130,13 @@ class ChooseCategoriesState extends State<ChooseCategories_Home> {
                   'images/geography.png',
                   'Địa lí',
                   Color.fromARGB(255, 91, 95, 151),
+                  5,
                 ),
                 _createButtonCategories(
                   'images/funny.png',
                   'Đố vui',
                   Color.fromARGB(255, 1255, 107, 108),
+                  6,
                 ),
               ],
             ),

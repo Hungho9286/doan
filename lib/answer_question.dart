@@ -1,8 +1,11 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doan/categories.dart';
 import 'package:doan/choose_categories.dart';
 import 'package:doan/result_answer.dart';
+import 'package:doan/result_detail_object.dart';
+import 'package:doan/result_object.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -30,28 +33,115 @@ class AnswerScreenHome extends StatefulWidget {
 }
 
 class _AnswerScreenHomeState extends State<AnswerScreenHome> {
+  late List<ResultDetail> _lsresult_detail = [];
+  late Query<Map<String, dynamic>> quizzs;
+
+  var results = FirebaseFirestore.instance.collection('results');
+
+  var resultsDetails = FirebaseFirestore.instance.collection('resultDetails');
+  late Result _result;
+  late String answerTrue;
+  late int pointAnswer;
+  late int count_results;
+  void initState() {
+    super.initState();
+
+    count_results = DateTime.now().millisecondsSinceEpoch;
+    switch (questionid) {
+      case 1:
+        {
+          txtTitle = "Công nghệ";
+          quizzs = FirebaseFirestore.instance
+              .collection('quizzs')
+              .where('fieldid', isEqualTo: 1)
+              .orderBy('id');
+        }
+        break;
+      case 2:
+        {
+          txtTitle = "Toán học";
+          quizzs = FirebaseFirestore.instance
+              .collection('quizzs')
+              .where('fieldid', isEqualTo: 2)
+              .orderBy('id');
+        }
+        break;
+      case 3:
+        {
+          txtTitle = "Văn học";
+          quizzs = FirebaseFirestore.instance
+              .collection('quizzs')
+              .where('fieldid', isEqualTo: 3)
+              .orderBy('id');
+        }
+        break;
+      case 4:
+        {
+          txtTitle = "Lịch sử";
+          quizzs = FirebaseFirestore.instance
+              .collection('quizzs')
+              .where('fieldid', isEqualTo: 4)
+              .orderBy('id');
+        }
+        break;
+      case 5:
+        {
+          txtTitle = "Địa lí";
+          quizzs = FirebaseFirestore.instance
+              .collection('quizzs')
+              .where('fieldid', isEqualTo: 5)
+              .orderBy('id');
+        }
+        break;
+      case 6:
+        {
+          txtTitle = "Đố vui";
+          quizzs = FirebaseFirestore.instance
+              .collection('quizzs')
+              .where('fieldid', isEqualTo: 6)
+              .orderBy('id');
+        }
+        break;
+    }
+  }
+
+  //Trạng thái button item
+  bool disableButton5050 = false;
+  bool disableButtonGoiY = false;
+  bool disableButtonThemThoiGian = false;
+  bool disableButtonSkip = false;
+  bool disableButtonNhanDoi = false;
+  //Màu sắc câu trả lời sai
   List<Color> colorListFalse = [
     Colors.white,
     Colors.white,
     Colors.white,
   ];
+  //Kiểm tra nhân đôi điểm
+  bool doublePoint = false;
   final indexRand = Random();
+  //index câu trả lời sai
   int indexAnswerColorFalseAfter = 0;
   int indexAnswerColorFalseBefore = 0;
+  //index random câu sai
   int indexRange1 = 0;
   int indexRange2 = 0;
-  late Color trueAnswerColorTop;
-  late Color trueAnswerColorBot;
-  int secondsAnimation = 0;
-  double opacity = 0;
+  //Màu sắc câu đúng
+  late Color trueAnswerColor = Colors.white;
+  //Số câu đúng
   int trueCorrect = 0;
+  //Kiểm tra load page lần đầu
   bool firstLoad = true;
+  //Xác định thời gian hoàn thành phần chơi
   int secondsClock = 0, minutesClock = 0;
   String digitSeconds = "00";
   String digitMinutes = "00";
-  static const int maxSecond = 10;
+  //Thời gian max trả lời 1 câu hỏi
+  static const int maxSecond = 30;
+  //Thời gian đồng hồ trả lời câu hỏi
   int seconds = maxSecond;
   Timer? timer;
+  //Kích hoạt thời gian
   void starTimer() {
     timer = Timer.periodic(Duration(seconds: 1), (_) {
       if (seconds > 0) {
@@ -85,6 +175,7 @@ class _AnswerScreenHomeState extends State<AnswerScreenHome> {
         for (var i = 0; i < 3; i++) {
           colorListFalse[i] = Colors.white;
         }
+        trueAnswerColor = Colors.white;
         seconds = maxSecond;
       });
 
@@ -92,7 +183,18 @@ class _AnswerScreenHomeState extends State<AnswerScreenHome> {
     timer?.cancel();
   }
 
-  int questionIndex = 0;
+  Future<int> countResultsDetails() async {
+    AggregateQuerySnapshot query = await results.count().get();
+
+    return query.count;
+  }
+
+  Future<int> countResults() async {
+    AggregateQuerySnapshot query = await results.count().get();
+
+    return query.count;
+  }
+
   List<String> lstItem = [
     "50/50",
     "SKIP",
@@ -101,16 +203,28 @@ class _AnswerScreenHomeState extends State<AnswerScreenHome> {
     "+30s",
   ];
   void chooseAnswer(String strAnswer) {
-    if (strAnswer == list.elementAt(index).result.toString()) {
+    _lsresult_detail.add(new ResultDetail(
+        id: DateTime.now().millisecondsSinceEpoch,
+        resultid: count_results,
+        quizzid: index + 1,
+        result: strAnswer,
+        point: strAnswer == answerTrue
+            ? (pointAnswer / maxSecond * seconds * 2).round()
+            : 0,
+        status: true));
+
+    if (strAnswer == answerTrue) {
       questionPresent += 1;
       trueCorrect++;
-      point = point + list.elementAt(index).maxpoint / maxSecond * seconds;
+      if (doublePoint == true) {
+        point = point + (pointAnswer / maxSecond * seconds * 2).round();
+        doublePoint = false;
+      } else
+        point = point + (pointAnswer / maxSecond * seconds).round();
       index++;
-
       resetTimer();
       setState(() {
-        trueAnswerColorTop = Colors.green;
-        trueAnswerColorBot = Colors.green;
+        trueAnswerColor = Colors.white;
       });
     } else {
       questionPresent += 1;
@@ -125,9 +239,7 @@ class _AnswerScreenHomeState extends State<AnswerScreenHome> {
   }
 
   Widget _buttonAnswer(String strAnswer, Color colorTop, Color ColorBot) {
-    if (strAnswer == list.elementAt(index).result) {
-      trueAnswerColorTop = colorTop;
-      trueAnswerColorBot = ColorBot;
+    if (strAnswer == answerTrue) {
       return Container(
         margin: const EdgeInsets.only(top: 10),
         child: TextButton(
@@ -137,6 +249,27 @@ class _AnswerScreenHomeState extends State<AnswerScreenHome> {
             }
             if (index == 9) {
               chooseAnswer(strAnswer);
+
+              results.add({
+                'id': count_results,
+                'fieldid': questionid,
+                'userid': 1,
+                'point': point,
+                'pointChao': point,
+                'testtime': secondsClock + minutesClock * 60,
+                'createdate': DateTime.now(),
+                'status': true,
+              });
+              for (int i = 0; i < _lsresult_detail.length; i++) {
+                resultsDetails.add({
+                  'id': _lsresult_detail[i].id,
+                  'quizzid': questionid,
+                  'resultid': count_results + 1,
+                  'result': _lsresult_detail[i].result,
+                  'point': _lsresult_detail[i].point,
+                  'status': _lsresult_detail[i].status,
+                });
+              }
               stopTimer();
               index = 0;
               Navigator.pop(context);
@@ -158,24 +291,28 @@ class _AnswerScreenHomeState extends State<AnswerScreenHome> {
                   top: 10,
                   left: 10,
                   child: AnimatedContainer(
-                    duration: Duration(seconds: 2),
+                    duration: Duration(seconds: 1),
                     width: 340,
                     height: 60,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
-                      color: trueAnswerColorBot,
+                      color: trueAnswerColor == Colors.white
+                          ? ColorBot
+                          : trueAnswerColor,
                     ),
                   ),
                 ),
                 AnimatedContainer(
-                  duration: Duration(seconds: 2),
+                  duration: Duration(seconds: 1),
                   alignment: Alignment.centerLeft,
                   padding: const EdgeInsets.only(left: 15),
                   width: 340,
                   height: 60,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
-                    color: trueAnswerColorTop,
+                    color: trueAnswerColor == Colors.white
+                        ? colorTop
+                        : trueAnswerColor,
                   ),
                   child: Text(
                     strAnswer,
@@ -222,7 +359,7 @@ class _AnswerScreenHomeState extends State<AnswerScreenHome> {
                 top: 10,
                 left: 10,
                 child: AnimatedContainer(
-                  duration: Duration(seconds: 2),
+                  duration: Duration(seconds: 1),
                   width: 340,
                   height: 60,
                   decoration: BoxDecoration(
@@ -235,7 +372,7 @@ class _AnswerScreenHomeState extends State<AnswerScreenHome> {
                 ),
               ),
               AnimatedContainer(
-                duration: Duration(seconds: 2),
+                duration: Duration(seconds: 1),
                 alignment: Alignment.centerLeft,
                 padding: const EdgeInsets.only(left: 15),
                 width: 340,
@@ -264,17 +401,103 @@ class _AnswerScreenHomeState extends State<AnswerScreenHome> {
 
   Widget _iconButton(String strName) {
     return TextButton(
-      onPressed: () {
+      onPressed: () async {
         if (strName == "50/50") {
-          indexRange1 = indexRand.nextInt(3);
-          for (; indexRange1 == indexRange2;) {
-            indexRange2 = indexRand.nextInt(3);
+          if (disableButton5050 == true) {
+            return showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                title: Text("Bạn đã dùng quyền trợ giúp " + strName + " rồi!"),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text("OK"),
+                  ),
+                ],
+              ),
+            );
+          } else {
+            indexRange1 = indexRand.nextInt(3);
+            for (; indexRange1 == indexRange2;) {
+              indexRange2 = indexRand.nextInt(3);
+            }
+            setState(() {
+              disableButton5050 = true;
+              colorListFalse[indexRange1] = Colors.grey;
+              colorListFalse[indexRange2] = Colors.grey;
+            });
           }
-
-          setState(() {
-            colorListFalse[indexRange1] = Colors.grey;
-            colorListFalse[indexRange2] = Colors.grey;
-          });
+        }
+        if (strName == "GỢI Ý") {
+          if (disableButtonGoiY == true) {
+            return showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                title: Text("Bạn đã dùng quyền trợ giúp " + strName + " rồi!"),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text("OK"),
+                  ),
+                ],
+              ),
+            );
+          } else {
+            setState(() {
+              disableButtonGoiY = true;
+              trueAnswerColor = Colors.green;
+            });
+          }
+        }
+        if (strName == "+30s") {
+          if (disableButtonThemThoiGian == true) {
+            return showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                title: Text("Bạn đã dùng quyền trợ giúp " + strName + " rồi!"),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text("OK"),
+                  ),
+                ],
+              ),
+            );
+          } else {
+            seconds += 30;
+            setState(() {
+              disableButtonThemThoiGian = true;
+            });
+          }
+        }
+        if (strName == "NHÂN ĐÔI") {
+          if (disableButtonNhanDoi == true) {
+            return showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                title: Text("Bạn đã dùng quyền trợ giúp " + strName + " rồi!"),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text("OK"),
+                  ),
+                ],
+              ),
+            );
+          } else {
+            doublePoint = true;
+            setState(() {
+              disableButtonNhanDoi = true;
+            });
+          }
         }
       },
       child: Container(
@@ -308,131 +531,8 @@ class _AnswerScreenHomeState extends State<AnswerScreenHome> {
   int index = 0;
   _AnswerScreenHomeState(questionid) {
     this.questionid = questionid;
-    if (questionid == 1) {
-      txtTitle = "Đố vui";
-      if (questionid == 1) {
-        list.add(quizz(
-          1,
-          1,
-          "1+1=?",
-          "1",
-          "2",
-          "3",
-          "4",
-          "2",
-          10,
-          2,
-        ));
-        list.add(quizz(
-          2,
-          1,
-          "Hưng đánh con gì ghê nhất trong LQ mobile",
-          "Murad",
-          "Amily",
-          "Yena",
-          "Tel a nắc",
-          "Yena",
-          90,
-          4,
-        ));
-        list.add(quizz(
-          2,
-          1,
-          "Hưng luyện LQ 1 ngày bao nhiêu phút?",
-          "60 phút",
-          "180 phút",
-          "20 phút",
-          "Tính bằng tiếng chứ ai tính bằng phút",
-          "Tính bằng tiếng chứ ai tính bằng phút",
-          50,
-          4,
-        ));
-        list.add(quizz(
-          2,
-          1,
-          "Ếch diu en gì là gì?",
-          "Ếch",
-          "Frog",
-          "Ếch giếng",
-          "Hung",
-          "Hung",
-          50,
-          4,
-        ));
-        list.add(quizz(
-          2,
-          1,
-          "Quê Hưng ở đâu?",
-          "Bình nhì",
-          "Thạnh Nhựt",
-          "Bình Định",
-          "Bình Địa",
-          "Thạnh Nhựt",
-          70,
-          4,
-        ));
-        list.add(quizz(
-          2,
-          1,
-          "Value là gì?",
-          "Giá trị",
-          "Là Value",
-          "Va liu",
-          "Va lùa",
-          "Va lùa",
-          70,
-          4,
-        ));
-        list.add(quizz(
-          2,
-          1,
-          "Ngoài chơi game ra Hưng còn làm gì khác không?",
-          "Làm bài tập",
-          "Chạy deadline đồ án Thầy Nguyên",
-          "Xem youtube",
-          "Thôi kì lắm không trả lời đâu",
-          "Thôi kì lắm không trả lời đâu",
-          120,
-          4,
-        ));
-        list.add(quizz(
-          2,
-          1,
-          "Muốn lên Chợ gạo (Tiền Giang) thì chạy qua đâu",
-          "Bình Nhì",
-          "Bình Định",
-          "Bình Địa",
-          "Bình Thủy",
-          "Bình Nhì",
-          80,
-          4,
-        ));
-        list.add(quizz(
-          2,
-          1,
-          "Hưng từng Hack FaceBook của ai",
-          "Sang (Nhóm Trưởng)",
-          "Trân",
-          "Em Gái",
-          "Em Trai",
-          "Sang (Nhóm Trưởng)",
-          120,
-          4,
-        ));
-        list.add(quizz(
-          2,
-          1,
-          "Hưng có biết bơi không?",
-          "Có",
-          "Không",
-          "Biết bơi ếch",
-          "Thùng bia",
-          "Thùng bia",
-          230,
-          4,
-        ));
-      }
-    }
+
+    if (questionid == 2) {}
   }
   @override
   Widget build(BuildContext context) {
@@ -541,36 +641,57 @@ class _AnswerScreenHomeState extends State<AnswerScreenHome> {
                   ],
                 ),
               ),
-              Container(
-                alignment: Alignment.centerLeft,
-                margin: const EdgeInsets.only(top: 30),
-                padding: const EdgeInsets.only(left: 47),
-                child: Text(
-                  list.elementAt(index).question.toString(),
-                  style: TextStyle(
-                    fontSize: 23,
-                    fontWeight: FontWeight.bold,
-                  ),
+              Expanded(
+                child: StreamBuilder(
+                  stream: quizzs.snapshots(),
+                  builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                    if (snapshot.hasData) {
+                      final DocumentSnapshot documentSnapshot =
+                          snapshot.data!.docs[index];
+                      answerTrue = documentSnapshot['result'];
+                      pointAnswer = documentSnapshot['point'];
+
+                      return ListView(
+                        children: [
+                          Container(
+                            alignment: Alignment.centerLeft,
+                            margin: const EdgeInsets.only(top: 30),
+                            padding: const EdgeInsets.only(left: 47),
+                            child: Text(
+                              documentSnapshot['question'],
+                              style: TextStyle(
+                                fontSize: 23,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          _buttonAnswer(
+                              documentSnapshot['answerA'],
+                              Color.fromARGB(255, 134, 168, 69),
+                              Color.fromARGB(255, 110, 140, 54)),
+                          _buttonAnswer(
+                            documentSnapshot['answerB'],
+                            Color.fromARGB(255, 162, 216, 159),
+                            Color.fromARGB(255, 136, 183, 134),
+                          ),
+                          _buttonAnswer(
+                            documentSnapshot['answerC'],
+                            Color.fromARGB(255, 244, 191, 61),
+                            Color.fromARGB(255, 216, 180, 94),
+                          ),
+                          _buttonAnswer(
+                            documentSnapshot['answerD'],
+                            Color.fromARGB(255, 255, 107, 108),
+                            Color.fromARGB(255, 206, 86, 87),
+                          ),
+                        ],
+                      );
+                    }
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  },
                 ),
-              ),
-              _buttonAnswer(
-                  list.elementAt(index).answerA.toString(),
-                  Color.fromARGB(255, 134, 168, 69),
-                  Color.fromARGB(255, 110, 140, 54)),
-              _buttonAnswer(
-                list.elementAt(index).answerB,
-                Color.fromARGB(255, 162, 216, 159),
-                Color.fromARGB(255, 136, 183, 134),
-              ),
-              _buttonAnswer(
-                list.elementAt(index).answerC,
-                Color.fromARGB(255, 244, 191, 61),
-                Color.fromARGB(255, 216, 180, 94),
-              ),
-              _buttonAnswer(
-                list.elementAt(index).answerD.toString(),
-                Color.fromARGB(255, 255, 107, 108),
-                Color.fromARGB(255, 206, 86, 87),
               ),
               Container(
                 padding: const EdgeInsets.only(top: 5),
