@@ -1,10 +1,11 @@
+import 'package:doan/choose_categories.dart';
 import 'package:doan/listfriend_chat.dart';
 import 'package:doan/main.dart';
+import 'package:doan/screen_chart.dart';
 import 'package:doan/tabmenu_r.dart';
+import 'package:flutter/foundation.dart';
 //import 'package:doan/tabmenu.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:iconsax/iconsax.dart';
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
@@ -150,7 +151,14 @@ class _FriendDetailHomeState extends State<FriendDetailHome>
               fontSize: 20,
             ),
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ScreenChat(),
+              ),
+            );
+          },
           style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
@@ -180,49 +188,44 @@ class _FriendDetailHomeState extends State<FriendDetailHome>
       ),
     );
     Widget _profile = Container(
-      padding: EdgeInsets.all(15),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      padding: EdgeInsets.only(left: 15, top: 30),
+      child: Column(
         children: [
-          Container(
-            padding: EdgeInsets.only(left: 10),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      'frog',
-                      style: TextStyle(
-                        fontFamily: 'klavika',
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 8, 59, 101),
-                      ),
-                    ),
-                  ],
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                'frog',
+                style: TextStyle(
+                  fontFamily: 'klavika',
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 8, 59, 101),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      '1256398',
-                      style: TextStyle(
-                        fontFamily: 'klavika',
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 248, 125, 10),
-                      ),
-                    ),
-                  ],
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                '1256398',
+                style: TextStyle(
+                  fontFamily: 'klavika',
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 248, 125, 10),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-          Padding(
-            padding: EdgeInsets.only(left: 50),
-          ),
-          IconButton(
+        ],
+      ),
+
+      // Padding(
+      //   padding: EdgeInsets.only(left: 50),
+      // ),
+      /*IconButton(
             onPressed: () {
               //Navigator.pop(context);
               showDialog(
@@ -261,8 +264,8 @@ class _FriendDetailHomeState extends State<FriendDetailHome>
               size: 40,
             ),
           ),
-
-          /*Padding(
+*/
+      /*Padding(
             padding: EdgeInsets.only(left: 20),
           ),
           IconButton(
@@ -273,8 +276,6 @@ class _FriendDetailHomeState extends State<FriendDetailHome>
               size: 50,
             ),
           ),*/
-        ],
-      ),
     );
     Widget _imgProfile = Stack(
       children: [
@@ -291,172 +292,206 @@ class _FriendDetailHomeState extends State<FriendDetailHome>
         ),
       ],
     );
-    return DefaultTabController(
-      length: 2,
-      initialIndex: 1,
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 213, 193, 17),
-        ),
-        body: Column(
-          children: [
-            // //Stack(
-            // //children: [
-            // _imgSection,
-            // Positioned(
-            //   top: 140,
-            //   left: 10,
-            //   child: _avtSection,
-            // ),
-            //],
-            //),
-
-            _imgSection,
-            Row(
-              children: [_avtSection, _profile],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [_dare, _chat],
-            ),
-            /*UserAccountsDrawerHeader(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('images/profilebg.jpg'),
-                  fit: BoxFit.cover,
-                ),
-              ),
-              currentAccountPicture: CircleAvatar(
-                child: CircleAvatar(
-                    radius: 30,
-                    backgroundImage: AssetImage(
-                      'images/frog.jpeg',
-                    )),
-              ),
-              accountName: Text('Frog'),
-              accountEmail: null,
-            ),*/
-            TabBar(
-              padding: EdgeInsets.only(top: 5),
-              indicatorColor: Color(4282542002),
-              unselectedLabelColor: Colors.grey,
-              controller: _controller,
-              tabs: [
-                Tab(
-                  child: Utils.IconWithColor(
-                    Icons.home_outlined,
-                    _controller.index == 0 ? Color(4282542002) : Colors.grey,
-                  ),
-                ),
-                Tab(
-                  child: Utils.IconWithColor(
-                    Icons.stacked_line_chart_rounded,
-                    _controller.index == 1 ? Color(4282542002) : Colors.grey,
-                  ),
-                ),
-              ],
-            ),
-            Expanded(
-              flex: 2,
-              child: Container(
-                child: TabBarView(
-                  controller: _controller,
-                  children: [
-                    Text('data 1'),
-                    TabMenuR(),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-        floatingActionButton: Container(
-          width: 80,
-          height: 80,
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: Colors.white,
-              width: 3,
-            ),
-            borderRadius: BorderRadius.all(Radius.circular(100)),
-          ),
-          child: FloatingActionButton(
-            onPressed: () {},
-            backgroundColor: Color.fromARGB(255, 250, 196, 32),
-            child: Container(
-              child: Icon(
-                Icons.home,
-                color: Colors.white,
-                size: 40,
-              ),
-            ),
-          ),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        bottomNavigationBar: BottomAppBar(
-          child: Container(
-              height: 70,
-              decoration: BoxDecoration(
-                color: Color.fromARGB(255, 134, 168, 69),
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(25),
-                    topRight: Radius.circular(25)),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return SafeArea(
+      top: true,
+      child: DefaultTabController(
+        length: 2,
+        initialIndex: 1,
+        child: Scaffold(
+          // appBar: AppBar(
+          //   backgroundColor: Color.fromARGB(255, 213, 193, 17),
+          // ),
+          body: Column(
+            children: [
+              // //Stack(
+              // //children: [
+              // _imgSection,
+              // Positioned(
+              //   top: 140,
+              //   left: 10,
+              //   child: _avtSection,
+              // ),
+              //],
+              //),
+              Stack(
+                alignment: Alignment.bottomLeft,
                 children: [
-                  TextButton(
-                    onPressed: () {},
-                    child: Icon(
-                      Iconsax.shop5,
-                      color: Colors.white,
-                      size: 40,
-                    ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 70),
+                    child: _imgSection,
                   ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Icon(
-                      Iconsax.ranking_15,
-                      color: Colors.white,
-                      size: 40,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 100,
-                    height: 40,
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Contact(),
-                        ),
-                      );
-                    },
-                    child: Icon(
-                      Iconsax.message5,
-                      color: Colors.white,
-                      size: 40,
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      /*Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => FriendDetail(),
-                        ),
-                      );*/
-                    },
-                    child: Icon(
-                      Iconsax.profile_circle5,
-                      color: Colors.white,
-                      size: 40,
-                    ),
+                  Row(
+                    children: [_avtSection, _profile],
                   ),
                 ],
-              )),
+              ),
+
+              TabBar(
+                padding: EdgeInsets.only(top: 10),
+                indicatorColor: Color(4282542002),
+                unselectedLabelColor: Colors.grey,
+                controller: _controller,
+                tabs: [
+                  Tab(
+                    // child: Utils.IconWithColor(
+                    //   Iconsax.medal_star,
+                    //   _controller.index == 0 ? Color(4282542002) : Colors.grey,
+                    // ),
+                    child: Column(children: [
+                      Icon(
+                        Iconsax.medal_star,
+                        color: _controller.index == 0
+                            ? Color(4282542002)
+                            : Color.fromARGB(255, 190, 189, 189),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 3.0),
+                        child: Text(
+                          'Thành tích',
+                          style: TextStyle(
+                            fontFamily: 'Roboto',
+                            color: _controller.index == 0
+                                ? Color(4282542002)
+                                : Color.fromARGB(255, 190, 189, 189),
+                          ),
+                        ),
+                      ),
+                    ]),
+                  ),
+                  Tab(
+                    child: Column(children: [
+                      Icon(
+                        Iconsax.chart_1,
+                        color: _controller.index == 1
+                            ? Color.fromARGB(255, 116, 122, 135)
+                            : Color.fromARGB(255, 190, 189, 189),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 3.0),
+                        child: Text(
+                          'Thống kê',
+                          style: TextStyle(
+                            fontFamily: 'Raleway',
+                            color: _controller.index == 1
+                                ? Color.fromARGB(255, 116, 122, 135)
+                                : Color.fromARGB(255, 190, 189, 189),
+                          ),
+                        ),
+                      ),
+                    ]),
+                  ),
+                ],
+              ),
+              Expanded(
+                flex: 2,
+                child: Container(
+                  child: TabBarView(
+                    controller: _controller,
+                    children: [
+                      Text('data 1'),
+                      TabMenuR(),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+          floatingActionButton: Container(
+            width: 80,
+            height: 80,
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Colors.white,
+                width: 3,
+              ),
+              borderRadius: BorderRadius.all(Radius.circular(100)),
+            ),
+            child: FloatingActionButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ChooseCategories(),
+                  ),
+                );
+              },
+              backgroundColor: Color.fromARGB(255, 216, 199, 104),
+              child: Container(
+                child: Icon(
+                  Icons.home,
+                  color: Colors.white,
+                  size: 40,
+                ),
+              ),
+            ),
+          ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          bottomNavigationBar: BottomAppBar(
+            child: Container(
+                height: 70,
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 134, 168, 69),
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(25),
+                      topRight: Radius.circular(25)),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    TextButton(
+                      onPressed: () {},
+                      child: Icon(
+                        Iconsax.shop5,
+                        color: Colors.white,
+                        size: 40,
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: Icon(
+                        Iconsax.ranking_15,
+                        color: Colors.white,
+                        size: 40,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 100,
+                      height: 40,
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Contact(),
+                          ),
+                        );
+                      },
+                      child: Icon(
+                        Iconsax.message5,
+                        color: Colors.white,
+                        size: 40,
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        /*Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => FriendDetail(),
+                          ),
+                        );*/
+                      },
+                      child: Icon(
+                        Iconsax.profile_circle5,
+                        color: Colors.white,
+                        size: 40,
+                      ),
+                    ),
+                  ],
+                )),
+          ),
         ),
       ),
     );

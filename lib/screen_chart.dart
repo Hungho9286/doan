@@ -12,7 +12,7 @@ class ScreenChat extends StatefulWidget {
   State<StatefulWidget> createState() => _ScreenChatState();
 }
 
-String _name = "gao den";
+//String _name = "frog";
 
 class _ScreenChatState extends State<ScreenChat> with TickerProviderStateMixin {
   final List<ChatMessage> _messages = <ChatMessage>[];
@@ -140,7 +140,7 @@ class _ScreenChatState extends State<ScreenChat> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.orange,
+        backgroundColor: Color.fromARGB(255, 250, 196, 32),
         title: Row(
           children: [
             CircleAvatar(
@@ -148,14 +148,12 @@ class _ScreenChatState extends State<ScreenChat> with TickerProviderStateMixin {
               backgroundColor: Color.fromARGB(255, 8, 59, 101),
               child: CircleAvatar(
                 radius: 23,
-                backgroundImage: AssetImage('images/gaoden.png'),
+                backgroundImage: AssetImage('images/frog.jpeg'),
               ),
             ),
             Container(
               padding: EdgeInsets.only(left: 15),
-              child: Text(
-                '${_name}',
-              ),
+              child: Text('frog'),
             ),
           ],
         ),
@@ -208,14 +206,15 @@ class ChatMessage extends StatelessWidget {
                 backgroundColor: Color.fromARGB(255, 8, 59, 101),
                 child: CircleAvatar(
                   radius: 23,
-                  backgroundImage: AssetImage('images/frog.jpeg'),
+                  backgroundImage: AssetImage('images/avatar.jpg'),
                 ),
               ),
             ),
             new Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                new Text('frog', style: Theme.of(context).textTheme.subtitle1),
+                new Text('Yuna Ogura',
+                    style: Theme.of(context).textTheme.subtitle1),
                 new Container(
                   margin: const EdgeInsets.only(top: 5.0),
                   child: new Text(text),

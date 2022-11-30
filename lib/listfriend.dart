@@ -6,25 +6,39 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:iconsax/iconsax.dart';
 
-class Contact extends StatefulWidget {
-  const Contact({super.key});
-
+class ListFriend extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _ContactState();
+  State<StatefulWidget> createState() => _ListFriendState();
 }
 
-class _ContactState extends State<Contact> {
+class _ListFriendState extends State<ListFriend> {
   Widget _PopUpMenu() {
     return PopupMenuButton(
         icon: Icon(Icons.more_vert),
         itemBuilder: (context) => [
               PopupMenuItem(
                 child: ListTile(
-                  leading: Icon(Icons.delete),
-                  title: Text('Delete Chat'),
-                  subtitle: Text('Xóa vĩnh viễn đoạn hội thoại'),
+                  leading: Icon(Icons.person_remove_alt_1_rounded),
+                  title: Text('Huỷ kết bạn'),
+                  //subtitle: Text('Hủy kết bạn với ...'),
                 ),
                 onTap: () {},
+              ),
+              PopupMenuItem(
+                child: ListTile(
+                  leading: Icon(Icons.message_outlined),
+                  title: Text('Nhắn tin'),
+                  //subtitle: Text('chat'),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ScreenChat(),
+                    ),
+                  );
+                },
               ),
             ]);
   }
@@ -33,8 +47,18 @@ class _ContactState extends State<Contact> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 250, 196, 32),
         title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Danh sách bạn bè',
+            ),
+            Icon(Icons.search),
+          ],
+        ),
+      ),
+
+      /*Row(
           children: [
             Expanded(
               child: TextField(
@@ -47,8 +71,8 @@ class _ContactState extends State<Contact> {
               ),
             ),
           ],
-        ),
-      ),
+        ),*/
+      //),
       body: Container(
         padding: EdgeInsets.all(10),
         child: ListView(

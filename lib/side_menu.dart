@@ -1,5 +1,7 @@
 import 'package:doan/inventories_user.dart';
+import 'package:doan/listfriend.dart';
 import 'package:doan/profile_user.dart';
+import 'package:doan/rank_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -15,6 +17,14 @@ class SideMenu extends StatelessWidget {
     if (index == 0) {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => Profile()));
+    }
+    if (index == 2) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => ListFriend()));
+    }
+    if (index == 3) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => RankScreen()));
     }
     Inventories();
   }

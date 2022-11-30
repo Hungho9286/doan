@@ -1,8 +1,10 @@
 import 'package:doan/choose_categories.dart';
+import 'package:doan/friend_details.dart';
+import 'package:doan/screen_chart.dart';
 import 'package:doan/user.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+// import 'package:flutter/src/widgets/container.dart';
+// import 'package:flutter/src/widgets/framework.dart';
 import 'package:iconsax/iconsax.dart';
 
 class TabProfile extends StatefulWidget {
@@ -412,6 +414,118 @@ class _TabProfileState extends State<TabProfile>
     );
   }
 
+  Widget _option() {
+    return PopupMenuButton(
+        icon: Icon(Icons.more_vert),
+        itemBuilder: (context) => [
+              PopupMenuItem(
+                child: ListTile(
+                  leading: Icon(Icons.person_remove_alt_1_rounded),
+                  title: Text('Huỷ kết bạn'),
+                  //subtitle: Text('Hủy kết bạn với ...'),
+                ),
+                onTap: () {},
+              ),
+              PopupMenuItem(
+                child: ListTile(
+                  leading: Icon(Icons.message_outlined),
+                  title: Text('Nhắn tin'),
+                  //subtitle: Text('chat'),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ScreenChat(),
+                    ),
+                  );
+                },
+              ),
+            ]);
+  }
+
+  Widget _friend() {
+    return Container(
+      padding: EdgeInsets.all(10),
+      child: ListView(
+        children: [
+          Card(
+            color: Color.fromARGB(255, 202, 199, 199),
+            child: ListTile(
+              onTap: () {},
+              leading: CircleAvatar(
+                radius: 25,
+                backgroundColor: Color.fromARGB(255, 8, 59, 101),
+                child: CircleAvatar(
+                  radius: 23,
+                  backgroundImage: AssetImage('images/gaoden.png'),
+                ),
+              ),
+              title: Text(
+                'gao đen',
+              ),
+              trailing: _option(),
+            ),
+          ),
+          Card(
+            color: Color.fromARGB(255, 202, 199, 199),
+            child: ListTile(
+              leading: CircleAvatar(
+                radius: 25,
+                backgroundColor: Color.fromARGB(255, 8, 59, 101),
+                child: CircleAvatar(
+                  radius: 23,
+                  backgroundImage: AssetImage('images/trubatgioi.jpg'),
+                ),
+              ),
+              title: Text('trư bát giới'),
+              trailing: _option(),
+            ),
+          ),
+          Card(
+            color: Color.fromARGB(255, 202, 199, 199),
+            child: ListTile(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => FriendDetail(),
+                  ),
+                );
+              },
+              leading: CircleAvatar(
+                radius: 25,
+                backgroundColor: Color.fromARGB(255, 8, 59, 101),
+                child: CircleAvatar(
+                  radius: 23,
+                  backgroundImage: AssetImage('images/frog.jpeg'),
+                ),
+              ),
+              title: Text('frog'),
+              trailing: _option(),
+            ),
+          ),
+          Card(
+            color: Color.fromARGB(255, 202, 199, 199),
+            child: ListTile(
+              leading: CircleAvatar(
+                radius: 25,
+                backgroundColor: Color.fromARGB(255, 8, 59, 101),
+                child: CircleAvatar(
+                  radius: 23,
+                  backgroundImage: AssetImage('images/khabanh.png'),
+                ),
+              ),
+              title: Text('khá bảnh'),
+              trailing: _option(),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   late TabController _tabController;
   @override
   void initState() {
@@ -429,7 +543,7 @@ class _TabProfileState extends State<TabProfile>
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 3,
       initialIndex: 0,
       child: Column(
         children: [

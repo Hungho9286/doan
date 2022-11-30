@@ -26,7 +26,7 @@ class _TabMenuRState extends State<TabMenuRHome> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
-          backgroundColor: Colors.pink,
+          backgroundColor: Color.fromARGB(255, 255, 107, 108),
           foregroundColor: Colors.white,
         ),
         onPressed: () {},
@@ -85,7 +85,7 @@ class _TabMenuRState extends State<TabMenuRHome> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
-          backgroundColor: Color.fromARGB(255, 211, 195, 15),
+          backgroundColor: Color.fromARGB(255, 250, 194, 64),
           foregroundColor: Colors.white,
         ),
         onPressed: () {},
@@ -142,7 +142,7 @@ class _TabMenuRState extends State<TabMenuRHome> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
-          backgroundColor: Color.fromARGB(255, 28, 172, 42),
+          backgroundColor: Color.fromARGB(255, 134, 168, 69),
           foregroundColor: Colors.white,
         ),
         onPressed: () {},
@@ -206,33 +206,5 @@ class _TabMenuRState extends State<TabMenuRHome> {
         mainAxisSpacing: 10,
       ),
     );
-
-    /*return GridView.count(
-      primary: false,
-      padding: const EdgeInsets.all(10),
-      crossAxisSpacing: 10,
-      //mainAxisSpacing: 10,
-      crossAxisCount: 2,
-      children: [
-        _percent,
-        _ThoiGian,
-        _answer,
-      ],
-    );*/
-
-    /*return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            _percent,
-            _ThoiGian,
-          ],
-        ),
-        Row(
-          children: [_answer],
-        ),
-      ],
-    );*/
   }
 }
