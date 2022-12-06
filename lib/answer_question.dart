@@ -183,18 +183,6 @@ class _AnswerScreenHomeState extends State<AnswerScreenHome> {
     timer?.cancel();
   }
 
-  Future<int> countResultsDetails() async {
-    AggregateQuerySnapshot query = await results.count().get();
-
-    return query.count;
-  }
-
-  Future<int> countResults() async {
-    AggregateQuerySnapshot query = await results.count().get();
-
-    return query.count;
-  }
-
   List<String> lstItem = [
     "50/50",
     "SKIP",
@@ -272,7 +260,7 @@ class _AnswerScreenHomeState extends State<AnswerScreenHome> {
               }
               stopTimer();
               index = 0;
-              Navigator.pop(context);
+              Navigator.pop(context);      
               Navigator.push(
                   context,
                   MaterialPageRoute(
