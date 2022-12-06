@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "188077445082",
-    "project_id": "chao-quick",
-    "storage_bucket": "chao-quick.appspot.com"
+    "project_number": "298316471356",
+    "project_id": "chaoweb-39fd7",
+    "storage_bucket": "chaoweb-39fd7.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:188077445082:android:6b7d7a7682ee70ec223ae3",
+        "mobilesdk_app_id": "1:298316471356:android:454e480083d0ca6ae57739",
         "android_client_info": {
           "package_name": "com.example.doan"
         }
       },
       "oauth_client": [
         {
-          "client_id": "188077445082-8fqtireghsc7u6ddf00c72tn4n6vpqpa.apps.googleusercontent.com",
+          "client_id": "298316471356-7e36fra6bhvf7bm7844c5ef8cbqfb261.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCNDo-x25GvdkmZticUgfjRrcRp7EyrSaA"
+          "current_key": "AIzaSyBqPZ3Zam9NEKLtFWLTKikY-6W51qIdW8s"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "188077445082-8fqtireghsc7u6ddf00c72tn4n6vpqpa.apps.googleusercontent.com",
+              "client_id": "298316471356-7e36fra6bhvf7bm7844c5ef8cbqfb261.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

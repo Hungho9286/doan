@@ -2,6 +2,7 @@ import 'package:doan/Begin.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'login_gg/login_gg.dart';
 class Login extends StatelessWidget {
   const Login({super.key});
 
@@ -21,49 +22,40 @@ class _LoginHomeState extends State<LoginHome> {
   
   Widget build(BuildContext context) {
     
-    Future<UserCredential> signInWithGoogle() async {
-      GoogleSignIn _googleSignIn = GoogleSignIn(
-  // Optional clientId
-  // clientId: '479882132969-9i9aqik3jfjd7qhci1nqf0bm2g71rm1u.apps.googleusercontent.com',
-  scopes: <String>[
-    'email',
-    'https://www.googleapis.com/auth/contacts.readonly',
-  ],
-);
+//     Future<UserCredential> signInWithGoogle() async {
+//       GoogleSignIn _googleSignIn = GoogleSignIn(
+//   // Optional clientId
+//   // clientId: '479882132969-9i9aqik3jfjd7qhci1nqf0bm2g71rm1u.apps.googleusercontent.com',
+//   scopes: <String>[
+//     'email',
+//     'https://www.googleapis.com/auth/contacts.readonly',
+//   ],
+// );
 
-  // Trigger the authentication flow
-  final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+//   // Trigger the authentication flow
+//   final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-  // Obtain the auth details from the request
-  final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+//   // Obtain the auth details from the request
+//   final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
 
-  // Create a new credential
-  final credential = GoogleAuthProvider.credential(
-    accessToken: googleAuth?.accessToken,
-    idToken: googleAuth?.idToken,
-  );
+//   // Create a new credential
+//   final credential = GoogleAuthProvider.credential(
+//     accessToken: googleAuth?.accessToken,
+//     idToken: googleAuth?.idToken,
+//   );
 
-  // Once signed in, return the UserCredential
-  return await FirebaseAuth.instance.signInWithCredential(credential);
-}
+//   // Once signed in, return the UserCredential
+//   return await FirebaseAuth.instance.signInWithCredential(credential);
+// }
     Container _CreateButtonLog(IconData icon, Color cl, String label,String method)
     {
       return 
       Container(
         padding: EdgeInsets.only(top:15),
-        child : TextButton(onPressed: (){
-          if(method == "Google")
-          {
-            signInWithGoogle();
-            Navigator.push(context,
+        child : TextButton(onPressed: () async {
+        await signInWithGoogle();
+         Navigator.push(context,
                               MaterialPageRoute(builder: (context) => Begin()));
-          }
-          if(method == "Facebook")
-          {
-            
-              Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => Begin()));
-          }
         }, child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

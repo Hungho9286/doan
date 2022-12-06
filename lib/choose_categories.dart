@@ -1,5 +1,7 @@
 import 'package:doan/Shop.dart';
 import 'package:doan/answer_question.dart';
+import 'package:doan/friend_details.dart';
+import 'package:doan/listfriend_chat.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:doan/side_menu.dart';
@@ -20,13 +22,70 @@ class ChooseCategories_Home extends StatefulWidget {
 
 class ChooseCategoriesState extends State<ChooseCategories_Home> {
   @override
+  Widget _createButtonCategories(
+      String strImage, String strCategories, Color color, int fieldid) {
+    return TextButton(
+      onPressed: () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => AnswerScreen(fieldid)));
+      },
+      child: Container(
+        width: 160,
+        height: 160,
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Container(
+              child: Image.asset(
+                strImage,
+                fit: BoxFit.cover,
+                width: 90,
+              ),
+            ),
+            Container(
+              child: Stack(
+                children: [
+                  Text(
+                    strCategories,
+                    style: TextStyle(
+                      foreground: Paint()
+                        ..style = PaintingStyle.stroke
+                        ..strokeWidth = 1.5,
+                      fontSize: 24,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  Text(
+                    strCategories,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Chọn lĩnh vực',
       home: Scaffold(
         appBar: AppBar(
-          title: Text("CATEGORIES"),
+          title: Text(
+            "CATEGORIES",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
         drawer: SideMenu(),
         body: Center(
@@ -34,294 +93,51 @@ class ChooseCategoriesState extends State<ChooseCategories_Home> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (_) => AnswerScreen(1)));
-                  },
-                  child: Container(
-                    width: 160,
-                    height: 160,
-                    decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 134, 168, 69),
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    child: Column(children: [
-                      Container(
-                        padding: const EdgeInsets.only(top: 20),
-                        child: Image.asset(
-                          'images/technology.png',
-                          fit: BoxFit.cover,
-                          width: 90,
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: Stack(
-                          children: [
-                            Text(
-                              'Công nghệ',
-                              style: TextStyle(
-                                foreground: Paint()
-                                  ..style = PaintingStyle.stroke
-                                  ..strokeWidth = 1.5,
-                                fontSize: 24,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                            Text(
-                              'Công nghệ',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 24,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                    ]),
-                  ),
+                _createButtonCategories(
+                  'images/technology.png',
+                  'Công nghệ',
+                  Color.fromARGB(255, 134, 168, 69),
+                  1,
                 ),
-                TextButton(
-                  onPressed: () {},
-                  child: Container(
-                    width: 160,
-                    height: 160,
-                    decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 162, 216, 159),
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    child: Column(children: [
-                      Container(
-                        padding: const EdgeInsets.only(top: 20),
-                        child: Image.asset(
-                          'images/math.png',
-                          fit: BoxFit.cover,
-                          width: 90,
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: Stack(
-                          children: [
-                            Text(
-                              'Toán học',
-                              style: TextStyle(
-                                foreground: Paint()
-                                  ..style = PaintingStyle.stroke
-                                  ..strokeWidth = 1.5,
-                                fontSize: 24,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                            Text(
-                              'Toán học',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 24,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                    ]),
-                  ),
+                _createButtonCategories(
+                  'images/math.png',
+                  'Toán học',
+                  Color.fromARGB(255, 162, 216, 159),
+                  2,
                 ),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                TextButton(
-                  onPressed: () {},
-                  child: Container(
-                    width: 160,
-                    height: 160,
-                    decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 204, 240, 197),
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    child: Column(children: [
-                      Container(
-                        padding: const EdgeInsets.only(top: 20),
-                        child: Image.asset(
-                          'images/Literature.png',
-                          fit: BoxFit.cover,
-                          width: 90,
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: Stack(
-                          children: [
-                            Text(
-                              'Văn học',
-                              style: TextStyle(
-                                foreground: Paint()
-                                  ..style = PaintingStyle.stroke
-                                  ..strokeWidth = 1.5,
-                                fontSize: 24,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                            Text(
-                              'Văn học',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 24,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                    ]),
-                  ),
+                _createButtonCategories(
+                  'images/Literature.png',
+                  'Văn học',
+                  Color.fromARGB(255, 204, 240, 197),
+                  3,
                 ),
-                TextButton(
-                  onPressed: () {},
-                  child: Container(
-                    width: 160,
-                    height: 160,
-                    decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 254, 212, 110),
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    child: Column(children: [
-                      Container(
-                        padding: const EdgeInsets.only(top: 20),
-                        child: Image.asset(
-                          'images/history.png',
-                          fit: BoxFit.cover,
-                          width: 90,
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: Stack(
-                          children: [
-                            Text(
-                              'Lịch sử',
-                              style: TextStyle(
-                                foreground: Paint()
-                                  ..style = PaintingStyle.stroke
-                                  ..strokeWidth = 1.5,
-                                fontSize: 24,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                            Text(
-                              'Lịch sử',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 24,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                    ]),
-                  ),
+                _createButtonCategories(
+                  'images/history.png',
+                  'Lịch sử',
+                  Color.fromARGB(255, 254, 212, 110),
+                  4,
                 ),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                TextButton(
-                  onPressed: () {},
-                  child: Container(
-                    width: 160,
-                    height: 160,
-                    decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 91, 95, 151),
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    child: Column(children: [
-                      Container(
-                        padding: const EdgeInsets.only(top: 20),
-                        child: Image.asset(
-                          'images/geography.png',
-                          fit: BoxFit.cover,
-                          width: 60,
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: Stack(
-                          children: [
-                            Text(
-                              'Địa lí',
-                              style: TextStyle(
-                                foreground: Paint()
-                                  ..style = PaintingStyle.stroke
-                                  ..strokeWidth = 1.5,
-                                fontSize: 24,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                            Text(
-                              'Địa lí',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 24,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                    ]),
-                  ),
+                _createButtonCategories(
+                  'images/geography.png',
+                  'Địa lí',
+                  Color.fromARGB(255, 91, 95, 151),
+                  5,
                 ),
-                TextButton(
-                  onPressed: () {},
-                  child: Container(
-                    width: 160,
-                    height: 160,
-                    decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 1255, 107, 108),
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    child: Column(children: [
-                      Container(
-                        padding: const EdgeInsets.only(top: 20),
-                        child: Image.asset(
-                          'images/funny.png',
-                          fit: BoxFit.cover,
-                          width: 100,
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: Stack(
-                          children: [
-                            Text(
-                              'Đố vui',
-                              style: TextStyle(
-                                foreground: Paint()
-                                  ..style = PaintingStyle.stroke
-                                  ..strokeWidth = 1.5,
-                                fontSize: 24,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                            Text(
-                              'Đố vui',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 24,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                    ]),
-                  ),
+                _createButtonCategories(
+                  'images/funny.png',
+                  'Đố vui',
+                  Color.fromARGB(255, 1255, 107, 108),
+                  6,
                 ),
               ],
             ),
@@ -389,7 +205,14 @@ class ChooseCategoriesState extends State<ChooseCategories_Home> {
                     height: 40,
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Contact(),
+                        ),
+                      );
+                    },
                     child: Icon(
                       Iconsax.message5,
                       color: Colors.white,
@@ -397,7 +220,14 @@ class ChooseCategoriesState extends State<ChooseCategories_Home> {
                     ),
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => FriendDetail(),
+                        ),
+                      );
+                    },
                     child: Icon(
                       Iconsax.profile_circle5,
                       color: Colors.white,
