@@ -1,3 +1,4 @@
+import 'package:doan/Shop.dart';
 import 'package:doan/answer_question.dart';
 import 'package:doan/friend_details.dart';
 import 'package:doan/listfriend_chat.dart';
@@ -153,7 +154,10 @@ class ChooseCategoriesState extends State<ChooseCategories_Home> {
             borderRadius: BorderRadius.all(Radius.circular(100)),
           ),
           child: FloatingActionButton(
-            onPressed: () {},
+            onPressed: () {
+               Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => ChooseCategories()));
+            },
             backgroundColor: Color.fromARGB(255, 250, 196, 32),
             child: Container(
               child: Icon(
@@ -178,7 +182,10 @@ class ChooseCategoriesState extends State<ChooseCategories_Home> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                       Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => Shop()));
+                    },
                     child: Icon(
                       Iconsax.shop5,
                       color: Colors.white,
