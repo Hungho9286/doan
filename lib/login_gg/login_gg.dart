@@ -16,7 +16,6 @@ Future<User?> signInWithGoogle() async {
       accessToken: googleSignInAuthentication.accessToken);
   final usercredential = await _auth.signInWithCredential(credential);
   final User? user = usercredential.user;
-
   assert(!user!.isAnonymous);
   // ignore: unnecessary_null_comparison
   assert(await user!.getIdToken() != null);
@@ -30,6 +29,15 @@ Future<User?> signInWithGoogle() async {
   await LocalDB.saveAv(user.photoURL.toString());
 
   print(user);
+}
+
+bool signInGG() {
+  
+  if( signInWithGoogle() != null)
+  {
+     return true;
+  }
+  return false;
 }
 
 Future<String> signOut() async {
