@@ -167,7 +167,7 @@ class _SignUpHomeState extends State<SignUpHome> {
 
                                 };
                                 FirebaseFirestore.instance
-                                    .collection("u sers")
+                                    .collection("users")
                                     .add(data);
                                 if (NewUser != null) {
                                    Navigator.push(

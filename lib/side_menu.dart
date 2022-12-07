@@ -1,5 +1,6 @@
 import 'package:doan/inventories_user.dart';
 import 'package:doan/profile_user.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'login_gg/login_gg.dart';
@@ -109,8 +110,8 @@ class SideMenu extends StatelessWidget {
           Container(
             margin: const EdgeInsets.only(bottom: 30),
             child: TextButton(
-              onPressed: () {
-                signOut();
+              onPressed: () async {
+                await FirebaseAuth.instance.signOut();
                  Navigator.push(context,
                               MaterialPageRoute(builder: (context) => Login()));
               },
