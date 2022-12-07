@@ -1,9 +1,13 @@
 import 'package:doan/answer_question.dart';
+import 'package:doan/Begin.dart';
+import 'package:doan/Login.dart';
+import 'package:doan/Shop.dart';
+import 'package:doan/turn.dart';
+import 'Item_support.dart';
+import 'package:doan/result_answer.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:doan/choose_categories.dart';
-
-import 'Login.dart';
 
 Future<void> main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,7 +38,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:Login(),
+      body:ChooseCategories(),
     );
   }
 }

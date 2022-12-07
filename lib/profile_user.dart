@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doan/choose_categories.dart';
 import 'package:doan/user.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,9 @@ class TabProfile extends StatefulWidget {
 
 class _TabProfileState extends State<TabProfile>
     with SingleTickerProviderStateMixin {
+  var user = FirebaseFirestore.instance
+      .collection('users')
+      .doc('kV3N6tZ2q8C7nbs9ou9O');
   List<String> categories = [
     "Công nghệ",
     "Toán học",
@@ -27,7 +31,6 @@ class _TabProfileState extends State<TabProfile>
     name: "Yuna Ogura",
     address: "Japan",
     phoneNumber: "0919345678",
-    online: true,
     status: true,
     pointChao: 50,
     pointChallege: 1200,
@@ -119,7 +122,32 @@ class _TabProfileState extends State<TabProfile>
             height: 55,
           ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              User _user = new User(
+                  id: 1,
+                  name: txtName.text,
+                  address: txtAddress.text,
+                  phoneNumber: txtphoneNumber.text,
+                  status: true,
+                  pointChallege: 0,
+                  pointChao: 200);
+              user.update(_user.toJson());
+              showDialog(
+                context: context,
+                builder: ((context) => AlertDialog(
+                      title: Text('Thông báo'),
+                      content: Text('Cập nhật thông tin thành công'),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text('OK'),
+                        ),
+                      ],
+                    )),
+              );
+            },
             child: Text('Cập nhật'),
           ),
         ],

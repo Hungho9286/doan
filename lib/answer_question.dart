@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doan/categories.dart';
 import 'package:doan/choose_categories.dart';
@@ -182,7 +181,6 @@ class _AnswerScreenHomeState extends State<AnswerScreenHome> {
   void stopTimer() {
     timer?.cancel();
   }
-
   List<String> lstItem = [
     "50/50",
     "SKIP",

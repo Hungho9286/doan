@@ -3,7 +3,7 @@ class User {
   String name;
   String address;
   String phoneNumber;
-  bool online;
+
   bool status;
   int pointChao;
   int pointChallege;
@@ -12,9 +12,18 @@ class User {
     required this.name,
     required this.address,
     required this.phoneNumber,
-    required this.online,
     required this.status,
     required this.pointChao,
     required this.pointChallege,
   });
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'address': address,
+      'phoneNumber': phoneNumber,
+      'pointChao': pointChao,
+      'status': status
+    };
+  }
 }

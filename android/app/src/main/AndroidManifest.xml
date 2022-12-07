@@ -2,6 +2,7 @@
     package="com.example.doan">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    
    <application
         android:label="doan"
         android:name="${applicationName}"
