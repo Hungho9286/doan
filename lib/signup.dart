@@ -166,7 +166,8 @@ class _SignUpHomeState extends State<SignUpHome> {
                                     .collection("Users")
                                     .add(data);
                                 if (NewUser != null) {
-                                  AlertDialog(title:Text("Thông báo"),content: Text("Đăng ký thành công"),);
+                                   Navigator.push(
+                                  context, MaterialPageRoute(builder: (context) => Login()));
                                   
                                   
                                 } else {
