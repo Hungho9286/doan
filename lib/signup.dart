@@ -160,10 +160,14 @@ class _SignUpHomeState extends State<SignUpHome> {
                                 Map<String, dynamic> data = {
                                   "Email": emailtxt.text,
                                   "Nickname": nickname.text,
-                                  "PassWord": passtxt.text
+                                  "PassWord": passtxt.text,
+                                  "Address" : "",
+                                  "ChaoPoint" : 0 ,
+                                  "Turn" : 0
+
                                 };
                                 FirebaseFirestore.instance
-                                    .collection("Users")
+                                    .collection("u sers")
                                     .add(data);
                                 if (NewUser != null) {
                                    Navigator.push(
