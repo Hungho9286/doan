@@ -1,29 +1,41 @@
 class User {
-  int id;
   String name;
   String address;
   String phoneNumber;
-
-  bool status;
+  String email;
+  String password;
+  
   int pointChao;
-  int pointChallege;
+  int turn;
   User({
-    required this.id,
     required this.name,
+    required this.email,
+    required this.password,
     required this.address,
     required this.phoneNumber,
-    required this.status,
+   
     required this.pointChao,
-    required this.pointChallege,
+    required this.turn,
   });
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
-      'name': name,
-      'address': address,
-      'phoneNumber': phoneNumber,
-      'pointChao': pointChao,
-      'status': status
+      'NickName': name,
+      'Address': address,
+      'Phone': phoneNumber,
+      'ChaoPoint': pointChao,
+      'PassWord':password,
+      'Email':email,
+      'Turn': turn,
     };
   }
+
+  User.fromJson(Map<String, dynamic> res)
+      : name = res['Nickname'],
+        email = res['Email'],
+        password = res['PassWord'],
+        pointChao = res['ChaoPoint'],
+        address = res['Address'],
+        phoneNumber=res['Phone'],
+        turn=res['Turn']
+        ;
 }

@@ -15,9 +15,17 @@ class TabProfile extends StatefulWidget {
 
 class _TabProfileState extends State<TabProfile>
     with SingleTickerProviderStateMixin {
-  var user = FirebaseFirestore.instance
-      .collection('users')
-      .doc('kV3N6tZ2q8C7nbs9ou9O');
+  User u = new User(
+      name: '',
+      email: '',
+      password: '',
+      address: '',
+      phoneNumber: '',
+      pointChao: 0,
+      turn: 0);
+  DocumentReference<Map<String, dynamic>> user =
+      FirebaseFirestore.instance.collection('users').doc();
+
   List<String> categories = [
     "Công nghệ",
     "Toán học",
@@ -26,19 +34,14 @@ class _TabProfileState extends State<TabProfile>
     "Địa lí",
     "Đố vui",
   ];
-  static User u = new User(
-    id: 1,
-    name: "Yuna Ogura",
-    address: "Japan",
-    phoneNumber: "0919345678",
-    status: true,
-    pointChao: 50,
-    pointChallege: 1200,
-  );
-  var txtName = TextEditingController(text: u.name);
-  var txtAddress = TextEditingController(text: u.address);
-  var txtphoneNumber = TextEditingController(text: u.phoneNumber);
+
+  var txtName = TextEditingController();
+  var txtAddress = TextEditingController();
+  var txtphoneNumber = TextEditingController();
   Widget personal() {
+    txtAddress.text = u.address;
+      txtName.text = u.name;
+      txtphoneNumber.text = u.phoneNumber;
     return Container(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width - 30,
@@ -69,21 +72,6 @@ class _TabProfileState extends State<TabProfile>
                       ],
                     ),
                   ),
-                  Container(
-                    child: Row(children: [
-                      Text(
-                        "Point Challege: ",
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 179, 116, 28),
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        u.pointChallege.toString(),
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ]),
-                  )
                 ],
               ),
               Container(
@@ -123,15 +111,10 @@ class _TabProfileState extends State<TabProfile>
           ),
           ElevatedButton(
             onPressed: () {
-              User _user = new User(
-                  id: 1,
-                  name: txtName.text,
-                  address: txtAddress.text,
-                  phoneNumber: txtphoneNumber.text,
-                  status: true,
-                  pointChallege: 0,
-                  pointChao: 200);
-              user.update(_user.toJson());
+              u.phoneNumber = txtphoneNumber.text;
+              u.name = txtName.text;
+              u.address = txtAddress.text;
+              user.update(u.toJson());
               showDialog(
                 context: context,
                 builder: ((context) => AlertDialog(
@@ -444,9 +427,34 @@ class _TabProfileState extends State<TabProfile>
   @override
   void initState() {
     super.initState();
+    user = FirebaseFirestore.instance
+        .collection('users')
+        .doc('81N7Q8y4mPAWNVKCwnIU');
+    _getUser();
+
     _tabController = TabController(length: 2, vsync: this);
     _tabController.addListener(() {
       _TabHandle();
+    });
+  }
+
+  void _getUser() async {
+    setState(() {
+      user.get().then(
+        (value) async {
+          u = User.fromJson(value.data()!);
+          // u.name = value.data()!['NickName'];
+          // u.address = value.data()!['Address'];
+          // u.pointChao = value.data()!['ChaoPoint'];
+          // u.phoneNumber = value.data()!['Phone'];
+          // u.turn = value.data()!['Turn'];
+          // u.email = value.data()!['Email'];
+          // u.password = value.data()!['Password'];
+        },
+      );
+      txtAddress.text = u.address;
+      txtName.text = u.name;
+      txtphoneNumber.text = u.phoneNumber;
     });
   }
 

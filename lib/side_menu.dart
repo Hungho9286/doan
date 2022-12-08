@@ -1,23 +1,31 @@
+import 'package:doan/Shop.dart';
 import 'package:doan/inventories_user.dart';
 import 'package:doan/profile_user.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'login_gg/login_gg.dart';
 import 'Login.dart';
+
 class SideMenu extends StatelessWidget {
   List<String> lstItem = [
     "Thông tin cá nhân",
     'Kho đồ',
     "Danh sách bạn bè",
     "Xếp hạng",
-    "Shop"
+    "Shop",
   ];
   void _handleButton(int index, BuildContext context) {
     if (index == 0) {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => Profile()));
     }
-    Inventories();
+    if (index == 1) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => Inventories()));
+    }
+    if (index == 4) {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => Shop()));
+    }
   }
 
   @override
@@ -111,8 +119,8 @@ class SideMenu extends StatelessWidget {
             child: TextButton(
               onPressed: () {
                 signOut();
-                 Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => Login()));
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Login()));
               },
               child: Container(
                 child: Text(

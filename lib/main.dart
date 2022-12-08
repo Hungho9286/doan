@@ -1,5 +1,6 @@
 
 import 'package:doan/Login.dart';
+import 'package:doan/choose_categories.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -34,7 +35,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Login(),
+      body: ChooseCategories(),
     );
   }
 }
