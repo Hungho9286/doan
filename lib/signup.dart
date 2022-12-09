@@ -21,7 +21,6 @@ class SignUpHome extends StatefulWidget {
 
 class _SignUpHomeState extends State<SignUpHome> {
   @override
-  
   Widget build(BuildContext context) {
     TextEditingController nickname = TextEditingController();
     TextEditingController emailtxt = TextEditingController();
@@ -31,10 +30,9 @@ class _SignUpHomeState extends State<SignUpHome> {
     return Scaffold(
         body: SingleChildScrollView(
             child: Container(
-      color: Color.fromARGB(255, 198,239,165),
+      color: Color.fromARGB(255, 198, 239, 165),
       padding: EdgeInsets.all(30),
-      child: Column(mainAxisSize: MainAxisSize.max,
-       children: [
+      child: Column(mainAxisSize: MainAxisSize.max, children: [
         Container(
           alignment: Alignment.center,
           padding: EdgeInsets.fromLTRB(40, 40, 40, 0),
@@ -85,7 +83,7 @@ class _SignUpHomeState extends State<SignUpHome> {
                               fontWeight: FontWeight.bold)))),
               Container(
                 padding: EdgeInsets.all(10),
-                 color: Color.fromARGB(255, 198,239,165),
+                color: Color.fromARGB(255, 198, 239, 165),
                 child: TextField(
                   controller: nickname,
                   decoration: const InputDecoration(
@@ -96,7 +94,7 @@ class _SignUpHomeState extends State<SignUpHome> {
               ),
               Container(
                 padding: EdgeInsets.all(10),
-                 color: Color.fromARGB(255, 198,239,165),
+                color: Color.fromARGB(255, 198, 239, 165),
                 child: TextField(
                   controller: emailtxt,
                   decoration: const InputDecoration(
@@ -106,10 +104,9 @@ class _SignUpHomeState extends State<SignUpHome> {
                 ),
               ),
               Container(
-                 color: Color.fromARGB(255, 198,239,165),
+                color: Color.fromARGB(255, 198, 239, 165),
                 padding: EdgeInsets.all(10),
                 child: TextField(
-                  
                   controller: passtxt,
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(),
@@ -119,7 +116,7 @@ class _SignUpHomeState extends State<SignUpHome> {
                 ),
               ),
               Container(
-                color: Color.fromARGB(255, 198,239,165),
+                color: Color.fromARGB(255, 198, 239, 165),
                 padding: EdgeInsets.all(10),
                 child: TextField(
                   controller: confirmpasstxt,
@@ -130,91 +127,90 @@ class _SignUpHomeState extends State<SignUpHome> {
                   obscureText: true,
                 ),
               ),
-          Container(
-          padding: EdgeInsets.only(top: 15),
-          child: TextButton(
-            
-              onPressed: () async {
-                if (emailtxt.text.isEmpty ||
-                                passtxt.text.isEmpty ||
-                                nickname.text.isEmpty ||
-                                confirmpasstxt.text.isEmpty) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text("Vui lòng nhập cho đầy đủ"),
-                                ),
-                              );
-                            } else if (passtxt.text != confirmpasstxt.text) {
+              Container(
+                  padding: EdgeInsets.only(top: 15),
+                  child: TextButton(
+                      onPressed: () async {
+                        if (emailtxt.text.isEmpty ||
+                            passtxt.text.isEmpty ||
+                            nickname.text.isEmpty ||
+                            confirmpasstxt.text.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("Vui lòng nhập cho đầy đủ"),
+                            ),
+                          );
+                        } else if (passtxt.text != confirmpasstxt.text) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("Vui lòng nhập trùng PassWord"),
+                            ),
+                          );
+                        } else {
+                          try {
+                            final NewUser =
+                                _auth.createUserWithEmailAndPassword(
+                                    email: emailtxt.text,
+                                    password: passtxt.text);
+                            Map<String, dynamic> data = {
+                              "Email": emailtxt.text,
+                              "Nickname": nickname.text,
+                              "PassWord": passtxt.text
+                            };
+                            FirebaseFirestore.instance
+                                .collection("users")
+                                .add(data);
+                            if (NewUser != null) {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Login()));
+                            } else {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
                                   content:
-                                      Text("Vui lòng nhập trùng PassWord"),
+                                      Text("Tài khoản này không hợp lệ"),
                                 ),
                               );
-                            } else {
-                              try {
-                                final NewUser =
-                                    _auth.createUserWithEmailAndPassword(
-                                        email: emailtxt.text,
-                                        password: passtxt.text);
-                                Map<String, dynamic> data = {
-                                  "Email": emailtxt.text,
-                                  "Nickname": nickname.text,
-                                  "PassWord": passtxt.text
-                                };
-                                FirebaseFirestore.instance
-                                    .collection("Users")
-                                    .add(data);
-                                if (NewUser != null) {
-                                   Navigator.push(
-                                  context, MaterialPageRoute(builder: (context) => Login()));
-                                  
-                                  
-                                } else {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                      content: Text(
-                                          "Tài khoản này không hợp lệ"),
-                                    ),
-                                  );
-                                }
-                              } catch (e) {
-                                final snackBar = SnackBar(
-                                    content: Text('Có lỗi xảy ra!'));
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(snackBar);
-                              }
                             }
-              },
-              child:
-                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                Card(
-                  color: Colors.green,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)),
-                  child: Row(children: [
-                    Row(children: [
-                      Container(
-                        
-                        padding: EdgeInsets.all(4),
-                        height: 40,
-                        width: 200,
-                        child: Center(child: Text("Đăng Ký",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),)
-                      )
-                    ])
-                  ]),
-                )
-              ]
-              )
-              )
-              )
-              
+                          } catch (e) {
+                            final snackBar =
+                                SnackBar(content: Text('Có lỗi xảy ra!'));
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
+                          }
+                        }
+                      },
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Card(
+                              color: Colors.green,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: Row(children: [
+                                Row(children: [
+                                  Container(
+                                      padding: EdgeInsets.all(4),
+                                      height: 40,
+                                      width: 200,
+                                      child: Center(
+                                        child: Text(
+                                          "Đăng Ký",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ))
+                                ])
+                              ]),
+                            )
+                          ])))
             ],
           ),
-          
         ),
-      ]
-      ),
+      ]),
     )));
   }
 }
