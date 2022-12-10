@@ -1,5 +1,6 @@
 import 'package:doan/choose_categories.dart';
 import 'package:doan/dropdown_cat.dart';
+import 'package:doan/list_user_rank.dart';
 import 'package:doan/listfriend_chat.dart';
 import 'package:doan/profile_user.dart';
 import 'package:flutter/material.dart';
@@ -92,12 +93,23 @@ class _RankScreenState extends State<RankScreen>
                             ),
                           ),
                           Padding(padding: EdgeInsets.only(top: 10)),
-                          Text(
-                            'top 2 - 256632',
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 14, 144, 18)),
+                          Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right: 8.0),
+                                child: Icon(
+                                  Iconsax.cup5,
+                                  color: Color.fromARGB(255, 244, 216, 2),
+                                ),
+                              ),
+                              Text(
+                                'top 2 - 256632',
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color.fromARGB(255, 14, 144, 18)),
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -112,300 +124,7 @@ class _RankScreenState extends State<RankScreen>
             height: 450,
             child: Container(
               padding: EdgeInsets.all(30),
-              child: ListView(
-                shrinkWrap: true,
-                physics: BouncingScrollPhysics(),
-                children: [
-                  Card(
-                    shadowColor: Colors.yellow,
-                    elevation: 5,
-                    child: Container(
-                      height: 70,
-                      alignment: Alignment.center,
-                      child: ListTile(
-                        hoverColor: Colors.yellow,
-                        leading: CircleAvatar(
-                          radius: 25,
-                          backgroundColor: Colors.yellow,
-                          child: CircleAvatar(
-                            radius: 23,
-                            backgroundImage: AssetImage('images/gaoden.png'),
-                          ),
-                        ),
-                        title: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'gao đen',
-                              style: TextStyle(
-                                color: Colors.yellow,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              '5555555',
-                              style: TextStyle(
-                                color: Colors.yellow,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                        trailing: null,
-                      ),
-                    ),
-                  ),
-                  Card(
-                    shadowColor: Color.fromARGB(255, 193, 194, 194),
-                    elevation: 5,
-                    child: Container(
-                      height: 70,
-                      alignment: Alignment.center,
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          radius: 25,
-                          backgroundColor: Color.fromARGB(255, 193, 194, 194),
-                          child: CircleAvatar(
-                            radius: 23,
-                            backgroundImage: AssetImage('images/avatar.jpg'),
-                          ),
-                        ),
-                        title: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Yuna Ogura',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 193, 194, 194),
-                              ),
-                            ),
-                            Text(
-                              '256632',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 193, 194, 194),
-                              ),
-                            ),
-                          ],
-                        ),
-                        trailing: null,
-                      ),
-                    ),
-                  ),
-                  Card(
-                    shadowColor: Colors.red,
-                    elevation: 5,
-                    child: Container(
-                      height: 70,
-                      alignment: Alignment.center,
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          radius: 25,
-                          backgroundColor: Colors.red,
-                          child: CircleAvatar(
-                            radius: 23,
-                            backgroundImage: AssetImage('images/khabanh.png'),
-                          ),
-                        ),
-                        title: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'khá bảnh',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.red),
-                            ),
-                            Text(
-                              '199999',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.red),
-                            ),
-                          ],
-                        ),
-                        trailing: null,
-                      ),
-                    ),
-                  ),
-                  Card(
-                    child: Container(
-                      height: 70,
-                      alignment: Alignment.center,
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          radius: 25,
-                          backgroundColor: Color.fromARGB(255, 14, 144, 18),
-                          child: CircleAvatar(
-                            radius: 23,
-                            backgroundImage:
-                                AssetImage('images/trubatgioi.jpg'),
-                          ),
-                        ),
-                        title: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'trư bát giới',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 14, 144, 18)),
-                            ),
-                            Text(
-                              '192020',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 14, 144, 18)),
-                            ),
-                          ],
-                        ),
-                        trailing: null,
-                      ),
-                    ),
-                  ),
-                  Card(
-                    child: Container(
-                      height: 70,
-                      alignment: Alignment.center,
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          radius: 25,
-                          backgroundColor: Color.fromARGB(255, 14, 144, 18),
-                          child: CircleAvatar(
-                            radius: 23,
-                            backgroundImage:
-                                AssetImage('images/trubatgioi.jpg'),
-                          ),
-                        ),
-                        title: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'trư bát giới',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 14, 144, 18)),
-                            ),
-                            Text(
-                              '185263',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 14, 144, 18)),
-                            ),
-                          ],
-                        ),
-                        trailing: null,
-                      ),
-                    ),
-                  ),
-                  Card(
-                    child: Container(
-                      height: 70,
-                      alignment: Alignment.center,
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          radius: 25,
-                          backgroundColor: Color.fromARGB(255, 14, 144, 18),
-                          child: CircleAvatar(
-                            radius: 23,
-                            backgroundImage:
-                                AssetImage('images/trubatgioi.jpg'),
-                          ),
-                        ),
-                        title: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'trư bát giới',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 14, 144, 18)),
-                            ),
-                            Text(
-                              '142663',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 14, 144, 18)),
-                            ),
-                          ],
-                        ),
-                        trailing: null,
-                      ),
-                    ),
-                  ),
-                  Card(
-                    child: Container(
-                      height: 70,
-                      alignment: Alignment.center,
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          radius: 25,
-                          backgroundColor: Color.fromARGB(255, 14, 144, 18),
-                          child: CircleAvatar(
-                            radius: 23,
-                            backgroundImage:
-                                AssetImage('images/trubatgioi.jpg'),
-                          ),
-                        ),
-                        title: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'trư bát giới',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 14, 144, 18)),
-                            ),
-                            Text(
-                              '142663',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 14, 144, 18)),
-                            ),
-                          ],
-                        ),
-                        trailing: null,
-                      ),
-                    ),
-                  ),
-                  Card(
-                    child: Container(
-                      height: 70,
-                      alignment: Alignment.center,
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          radius: 25,
-                          backgroundColor: Color.fromARGB(255, 14, 144, 18),
-                          child: CircleAvatar(
-                            radius: 23,
-                            backgroundImage:
-                                AssetImage('images/trubatgioi.jpg'),
-                          ),
-                        ),
-                        title: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'trư bát giới',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 14, 144, 18)),
-                            ),
-                            Text(
-                              '142663',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 14, 144, 18)),
-                            ),
-                          ],
-                        ),
-                        trailing: null,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              child: ListRank(),
             ),
           ),
         ],
@@ -471,12 +190,23 @@ class _RankScreenState extends State<RankScreen>
                         ),
                       ),
                       Padding(padding: EdgeInsets.only(top: 10)),
-                      Text(
-                        'top 3 - 226532',
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Color.fromARGB(255, 14, 144, 18)),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: Icon(
+                              Iconsax.cup5,
+                              color: Color.fromARGB(255, 244, 216, 2),
+                            ),
+                          ),
+                          Text(
+                            'top 2 - 256632',
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromARGB(255, 14, 144, 18)),
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -489,300 +219,7 @@ class _RankScreenState extends State<RankScreen>
             height: 450,
             child: Container(
               padding: EdgeInsets.all(30),
-              child: ListView(
-                shrinkWrap: true,
-                physics: BouncingScrollPhysics(),
-                children: [
-                  Card(
-                    shadowColor: Colors.yellow,
-                    elevation: 5,
-                    child: Container(
-                      height: 70,
-                      alignment: Alignment.center,
-                      child: ListTile(
-                        hoverColor: Colors.yellow,
-                        leading: CircleAvatar(
-                          radius: 25,
-                          backgroundColor: Colors.yellow,
-                          child: CircleAvatar(
-                            radius: 23,
-                            backgroundImage: AssetImage('images/gaoden.png'),
-                          ),
-                        ),
-                        title: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'gao đen',
-                              style: TextStyle(
-                                color: Colors.yellow,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              '356892',
-                              style: TextStyle(
-                                color: Colors.yellow,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                        trailing: null,
-                      ),
-                    ),
-                  ),
-                  Card(
-                    shadowColor: Color.fromARGB(255, 193, 194, 194),
-                    elevation: 5,
-                    child: Container(
-                      height: 70,
-                      alignment: Alignment.center,
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          radius: 25,
-                          backgroundColor: Color.fromARGB(255, 193, 194, 194),
-                          child: CircleAvatar(
-                            radius: 23,
-                            backgroundImage: AssetImage('images/khabanh.png'),
-                          ),
-                        ),
-                        title: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'khá bảnh',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 193, 194, 194),
-                              ),
-                            ),
-                            Text(
-                              '245632',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 193, 194, 194),
-                              ),
-                            ),
-                          ],
-                        ),
-                        trailing: null,
-                      ),
-                    ),
-                  ),
-                  Card(
-                    shadowColor: Colors.red,
-                    elevation: 5,
-                    child: Container(
-                      height: 70,
-                      alignment: Alignment.center,
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          radius: 25,
-                          backgroundColor: Colors.red,
-                          child: CircleAvatar(
-                            radius: 23,
-                            backgroundImage: AssetImage('images/avatar.jpg'),
-                          ),
-                        ),
-                        title: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Yuna Ogura',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.red),
-                            ),
-                            Text(
-                              '226532',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.red),
-                            ),
-                          ],
-                        ),
-                        trailing: null,
-                      ),
-                    ),
-                  ),
-                  Card(
-                    child: Container(
-                      height: 70,
-                      alignment: Alignment.center,
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          radius: 25,
-                          backgroundColor: Color.fromARGB(255, 14, 144, 18),
-                          child: CircleAvatar(
-                            radius: 23,
-                            backgroundImage:
-                                AssetImage('images/trubatgioi.jpg'),
-                          ),
-                        ),
-                        title: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'trư bát giới',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 14, 144, 18)),
-                            ),
-                            Text(
-                              '192020',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 14, 144, 18)),
-                            ),
-                          ],
-                        ),
-                        trailing: null,
-                      ),
-                    ),
-                  ),
-                  Card(
-                    child: Container(
-                      height: 70,
-                      alignment: Alignment.center,
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          radius: 25,
-                          backgroundColor: Color.fromARGB(255, 14, 144, 18),
-                          child: CircleAvatar(
-                            radius: 23,
-                            backgroundImage:
-                                AssetImage('images/trubatgioi.jpg'),
-                          ),
-                        ),
-                        title: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'trư bát giới',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 14, 144, 18)),
-                            ),
-                            Text(
-                              '185263',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 14, 144, 18)),
-                            ),
-                          ],
-                        ),
-                        trailing: null,
-                      ),
-                    ),
-                  ),
-                  Card(
-                    child: Container(
-                      height: 70,
-                      alignment: Alignment.center,
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          radius: 25,
-                          backgroundColor: Color.fromARGB(255, 14, 144, 18),
-                          child: CircleAvatar(
-                            radius: 23,
-                            backgroundImage:
-                                AssetImage('images/trubatgioi.jpg'),
-                          ),
-                        ),
-                        title: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'trư bát giới',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 14, 144, 18)),
-                            ),
-                            Text(
-                              '142663',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 14, 144, 18)),
-                            ),
-                          ],
-                        ),
-                        trailing: null,
-                      ),
-                    ),
-                  ),
-                  Card(
-                    child: Container(
-                      height: 70,
-                      alignment: Alignment.center,
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          radius: 25,
-                          backgroundColor: Color.fromARGB(255, 14, 144, 18),
-                          child: CircleAvatar(
-                            radius: 23,
-                            backgroundImage:
-                                AssetImage('images/trubatgioi.jpg'),
-                          ),
-                        ),
-                        title: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'trư bát giới',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 14, 144, 18)),
-                            ),
-                            Text(
-                              '142663',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 14, 144, 18)),
-                            ),
-                          ],
-                        ),
-                        trailing: null,
-                      ),
-                    ),
-                  ),
-                  Card(
-                    child: Container(
-                      height: 70,
-                      alignment: Alignment.center,
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          radius: 25,
-                          backgroundColor: Color.fromARGB(255, 14, 144, 18),
-                          child: CircleAvatar(
-                            radius: 23,
-                            backgroundImage:
-                                AssetImage('images/trubatgioi.jpg'),
-                          ),
-                        ),
-                        title: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'trư bát giới',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 14, 144, 18)),
-                            ),
-                            Text(
-                              '123456',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromARGB(255, 14, 144, 18)),
-                            ),
-                          ],
-                        ),
-                        trailing: null,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              child: ListRank(),
             ),
           ),
         ],
@@ -803,7 +240,7 @@ class _RankScreenState extends State<RankScreen>
                   border: Border.all(width: 2, color: Colors.yellowAccent),
                 ),
                 alignment: Alignment.center,
-                child: Text('5000'),
+                child: Text('3'),
                 height: 20,
                 width: 70,
               ),
@@ -878,6 +315,9 @@ class _RankScreenState extends State<RankScreen>
         ),*/
         body: Column(
           children: [
+            Padding(
+              padding: EdgeInsets.only(top: 15),
+            ),
             _header,
             TabBar(
               indicatorPadding:
@@ -894,7 +334,7 @@ class _RankScreenState extends State<RankScreen>
               tabs: [
                 Tab(
                   child: Icon(
-                    Iconsax.personalcard,
+                    Iconsax.ranking5,
                     color: _tabcontroller.index == 0
                         ? Color.fromARGB(255, 250, 194, 64)
                         : Colors.grey,
@@ -902,7 +342,7 @@ class _RankScreenState extends State<RankScreen>
                 ),
                 Tab(
                   child: Icon(
-                    Iconsax.personalcard,
+                    Iconsax.ranking_14,
                     color: _tabcontroller.index == 1
                         ? Color.fromARGB(255, 250, 194, 64)
                         : Colors.grey,

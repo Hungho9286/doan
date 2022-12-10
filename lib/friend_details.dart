@@ -209,7 +209,7 @@ class _FriendDetailHomeState extends State<FriendDetailHome>
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                '1256398',
+                '256321',
                 style: TextStyle(
                   fontFamily: 'klavika',
                   fontSize: 20,
@@ -341,7 +341,7 @@ class _FriendDetailHomeState extends State<FriendDetailHome>
                       Icon(
                         Iconsax.medal_star,
                         color: _controller.index == 0
-                            ? Color(4282542002)
+                            ? Color.fromARGB(255, 116, 122, 135)
                             : Color.fromARGB(255, 190, 189, 189),
                       ),
                       Padding(
@@ -351,7 +351,7 @@ class _FriendDetailHomeState extends State<FriendDetailHome>
                           style: TextStyle(
                             fontFamily: 'Roboto',
                             color: _controller.index == 0
-                                ? Color(4282542002)
+                                ? Color.fromARGB(255, 116, 122, 135)
                                 : Color.fromARGB(255, 190, 189, 189),
                           ),
                         ),
@@ -388,7 +388,7 @@ class _FriendDetailHomeState extends State<FriendDetailHome>
                   child: TabBarView(
                     controller: _controller,
                     children: [
-                      Text('data 1'),
+                      Text(''),
                       TabMenuR(),
                     ],
                   ),

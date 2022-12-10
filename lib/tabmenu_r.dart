@@ -102,7 +102,7 @@ class _TabMenuRState extends State<TabMenuRHome> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    '0%',
+                    '90%',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -159,7 +159,7 @@ class _TabMenuRState extends State<TabMenuRHome> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    '0',
+                    '999',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,

@@ -29,10 +29,10 @@ class _TabProfileState extends State<TabProfile>
     name: "Yuna Ogura",
     address: "Japan",
     phoneNumber: "0919345678",
+    avatar: "",
     online: true,
     status: true,
-    pointChao: 50,
-    pointChallege: 1200,
+    point: 50,
   );
   var txtName = TextEditingController(text: u.name);
   var txtAddress = TextEditingController(text: u.address);
@@ -60,7 +60,7 @@ class _TabProfileState extends State<TabProfile>
                           ),
                         ),
                         Text(
-                          u.pointChao.toString(),
+                          u.point.toString(),
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                           ),
@@ -76,10 +76,6 @@ class _TabProfileState extends State<TabProfile>
                           color: Color.fromARGB(255, 179, 116, 28),
                           fontWeight: FontWeight.bold,
                         ),
-                      ),
-                      Text(
-                        u.pointChallege.toString(),
-                        style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ]),
                   )
