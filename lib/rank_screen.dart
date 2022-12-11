@@ -273,28 +273,6 @@ class _RankScreenState extends State<RankScreen>
                   right: 55,
                   width: 16,
                   height: 20,
-                  child: Image.asset('images/ticket.png', fit: BoxFit.cover)),
-            ],
-          ),
-        ),
-        Container(
-          padding: EdgeInsets.only(top: 30, left: 20, right: 10),
-          child: Stack(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadiusDirectional.circular(20),
-                  border: Border.all(width: 2, color: Colors.yellowAccent),
-                ),
-                alignment: Alignment.center,
-                child: Text('5000'),
-                height: 20,
-                width: 70,
-              ),
-              Positioned(
-                  right: 55,
-                  width: 16,
-                  height: 20,
                   child: Image.asset('images/chao.png', fit: BoxFit.cover)),
             ],
           ),
