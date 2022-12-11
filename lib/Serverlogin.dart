@@ -9,7 +9,7 @@ class Services {
   final auth = FirebaseAuth.instance;
   loginUser(email, password, context) async {
     late String txtEmail;
-    try {
+    // try {
       await auth.signInWithEmailAndPassword(email: email, password: password);
       
       auth.authStateChanges().listen((event) {
@@ -18,9 +18,9 @@ class Services {
               context, MaterialPageRoute(builder: (context) => Begin()));
         }
       });
-    }  on FirebaseAuthException catch (e) {
-      final snackBar = SnackBar(content: Text('Lỗi kết nối đến Server'));
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    }
+    // }  on FirebaseAuthException catch (e) {
+    //   final snackBar = SnackBar(content: Text('Lỗi kết nối đến Server'));
+    //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    // }
   }
 }

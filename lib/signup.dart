@@ -30,14 +30,19 @@ class _SignUpHomeState extends State<SignUpHome> {
     final FirebaseAuth _auth = FirebaseAuth.instance;
     return Scaffold(
         body: SingleChildScrollView(
-            child: Container(
-      color: Color.fromARGB(255, 198,239,165),
+        child: Container(
+        color: Color.fromARGB(255, 198,239,165),
+        height: 1000,
+        child: Container(
+      
       padding: EdgeInsets.all(30),
-      child: Column(mainAxisSize: MainAxisSize.max,
+      
+      child: Column(
        children: [
         Container(
+          
           alignment: Alignment.center,
-          padding: EdgeInsets.fromLTRB(40, 40, 40, 0),
+          padding: EdgeInsets.fromLTRB(40, 30, 40, 0),
           child:
               // ignore: prefer_const_literals_to_create_immutables
               Column(
@@ -46,7 +51,7 @@ class _SignUpHomeState extends State<SignUpHome> {
               Text(
                 "Welcome to",
                 style: TextStyle(
-                  color: Color.fromARGB(255, 184, 255, 97),
+                  color: Color.fromARGB(255, 255, 255, 255),
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
                 ),
@@ -70,13 +75,9 @@ class _SignUpHomeState extends State<SignUpHome> {
                   ),
                 ],
               ),
+              
               Container(
-                padding: EdgeInsets.only(top: 20, bottom: 0),
-                child: Image.asset('images/Begin.png',
-                    fit: BoxFit.cover, width: 150),
-              ),
-              Container(
-                  padding: EdgeInsets.all(10),
+                  padding: EdgeInsets.fromLTRB(0, 30, 0, 20),
                   child: Center(
                       child: Text("ĐĂNG KÝ",
                           style: TextStyle(
@@ -102,7 +103,7 @@ class _SignUpHomeState extends State<SignUpHome> {
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: 'Nhập Email',
-                      prefixIcon: Icon(Icons.phone)),
+                      prefixIcon: Icon(Icons.mail)),
                 ),
               ),
               Container(
@@ -192,18 +193,49 @@ class _SignUpHomeState extends State<SignUpHome> {
               },
               child:
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                
                 Card(
                   color: Colors.green,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20)),
                   child: Row(children: [
                     Row(children: [
-                      Container(
-                        
-                        padding: EdgeInsets.all(4),
-                        height: 40,
-                        width: 200,
-                        child: Center(child: Text("Đăng Ký",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),)
+                        Container(
+                          
+                          padding: EdgeInsets.all(4),
+                          height: 40,
+                          width: 200,
+                          child: Center(child: Text("Đăng Ký",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),)
+                      )
+                    ])
+                  ]),
+                )
+              ]
+              )
+              )
+              ),
+              Container(
+          padding: EdgeInsets.only(top: 15),
+          child: TextButton(
+            
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Login(),));
+              },
+              child:
+                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                
+                Card(
+                  color: Colors.green,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Row(children: [
+                    Row(children: [
+                        Container(
+                          
+                          padding: EdgeInsets.all(4),
+                          height: 40,
+                          width: 200,
+                          child: Center(child: Text("Đăng Nhập",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),)
                       )
                     ])
                   ]),
@@ -219,6 +251,9 @@ class _SignUpHomeState extends State<SignUpHome> {
         ),
       ]
       ),
-    )));
+    ),
+    )
+    )
+    );
   }
 }

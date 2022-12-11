@@ -490,8 +490,9 @@ class _ProfileHomeState extends State<ProfileHome> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Text('Thông tin cá nhân'),
-      ),
+          title: Text('Thông tin cá nhân'),
+          backgroundColor: Color.fromARGB(255, 184, 255, 97),
+          actions: []),
       body: Center(
         child: Column(
           children: [

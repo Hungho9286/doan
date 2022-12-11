@@ -35,7 +35,7 @@ class _ShopHomeState extends State<ShopHome> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    padding: EdgeInsets.only(top: 20, left: 20, right: 10),
+                    padding: EdgeInsets.only(top: 60, left: 20, right: 10),
                     child: Stack(
                       children: [
                         Container(
@@ -62,7 +62,7 @@ class _ShopHomeState extends State<ShopHome> {
                   ),
                   
                   Container(
-                    padding: EdgeInsets.only(top: 20, left: 20, right: 10),
+                    padding: EdgeInsets.only(top: 60, left: 20, right: 10),
                     child: Stack(
                       children: [
                         Container(

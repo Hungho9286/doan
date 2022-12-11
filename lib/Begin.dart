@@ -18,20 +18,17 @@ class _BeginHomeState extends State<BeginHome> {
   @override
   Widget build(BuildContext context) {
     
-    return  MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Container(
-          color: Color.fromARGB(255, 198,239,165),
-          
-          child: Column(
+    return Scaffold(
+        body: SingleChildScrollView(
+          child: Container( height: 1000,color: Color.fromARGB(255, 198,239,165), child:
+          Column(
             
             children: [
+
               Container(
                 alignment: Alignment.center,
-                padding: EdgeInsets.fromLTRB(40, 40, 40, 0),
+                padding: EdgeInsets.fromLTRB(40, 60, 40, 0),
                 child: 
-                // ignore: prefer_const_literals_to_create_immutables
                 Column(children: [
                     Text("Welcome to",style: TextStyle(color: Colors.white,fontSize: 30,fontWeight: FontWeight.bold,),),
                     Row( mainAxisAlignment:  MainAxisAlignment.center , 
@@ -59,7 +56,7 @@ class _BeginHomeState extends State<BeginHome> {
                           Container(
                             width: 200,  
                             height: 70,  
-                            padding: new EdgeInsets.all(10.0),
+                            padding: new EdgeInsets.all(10 ),
                             child:  Card(
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20),
@@ -83,7 +80,8 @@ class _BeginHomeState extends State<BeginHome> {
             ],
           ),
         ),
-      ),
-    );
+      )
+    )
+    ;
   }
 }

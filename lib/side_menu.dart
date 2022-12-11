@@ -1,4 +1,5 @@
-import 'package:doan/inventories_user.dart';
+import 'package:doan/Shop.dart';
+import 'package:doan/storage.dart';
 import 'package:doan/profile_user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,23 @@ class SideMenu extends StatelessWidget {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => Profile()));
     }
-    Inventories();
+    if (index == 1) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) =>  Storage()));
+    }
+    if (index == 2) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) =>  Storage()));
+    }
+    if (index == 3) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) =>  Storage()));
+    }
+    if (index == 4) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) =>  Shop()));
+    }
+    
   }
 
   @override
@@ -126,6 +143,7 @@ class SideMenu extends StatelessWidget {
               ),
             ),
           ),
+          
         ],
       ),
     );

@@ -92,7 +92,7 @@ class _Item_supportHomeState extends State<Item_supportHome> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                padding: EdgeInsets.only(top: 40, left: 20, right: 10),
+                padding: EdgeInsets.only(top: 60, left: 20, right: 10),
                 child: Stack(
                   children: [
                     Container(
@@ -120,7 +120,7 @@ class _Item_supportHomeState extends State<Item_supportHome> {
                
              
                Container(
-               padding: EdgeInsets.only(top: 40, left: 20, right: 10),
+               padding: EdgeInsets.only(top: 60, left: 20, right: 10),
                 child: Stack(
                   children: [
                     Container(
