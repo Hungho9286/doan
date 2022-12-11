@@ -1,9 +1,13 @@
+import 'package:doan/Shop.dart';
 import 'package:doan/inventories_user.dart';
 import 'package:doan/listfriend.dart';
 import 'package:doan/profile_user.dart';
 import 'package:doan/rank_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'login_gg/login_gg.dart';
+import 'Login.dart';
 
 class SideMenu extends StatelessWidget {
   List<String> lstItem = [
@@ -11,7 +15,7 @@ class SideMenu extends StatelessWidget {
     'Kho đồ',
     "Danh sách bạn bè",
     "Xếp hạng",
-    "Shop"
+    "Shop",
   ];
   void _handleButton(int index, BuildContext context) {
     if (index == 0) {
@@ -27,6 +31,13 @@ class SideMenu extends StatelessWidget {
           context, MaterialPageRoute(builder: (context) => RankScreen()));
     }
     Inventories();
+    if (index == 1) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => Inventories()));
+    }
+    if (index == 4) {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => Shop()));
+    }
   }
 
   @override
@@ -118,7 +129,11 @@ class SideMenu extends StatelessWidget {
           Container(
             margin: const EdgeInsets.only(bottom: 30),
             child: TextButton(
-              onPressed: () {},
+              onPressed: () async {
+                await FirebaseAuth.instance.signOut();
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Login()));
+              },
               child: Container(
                 child: Text(
                   'Đăng xuất',
