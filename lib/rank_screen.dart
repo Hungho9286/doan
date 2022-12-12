@@ -265,7 +265,7 @@ class _RankScreenState extends State<RankScreen>
                   border: Border.all(width: 2, color: Colors.yellowAccent),
                 ),
                 alignment: Alignment.center,
-                child: Text('5000'),
+                child: Text('1236'),
                 height: 20,
                 width: 70,
               ),
